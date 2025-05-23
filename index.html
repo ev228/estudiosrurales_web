@@ -1408,15 +1408,11 @@
                 navLinksContainer.classList.toggle('active');
             });
             navLinksContainer.querySelectorAll('a').forEach(link => { 
-                link.addEventListener('click', (event) => { // Pasar 'event'
-                    // Si el enlace es para abrir el modal de inscripción, no cerrar el menú aún,
-                    // ya que el modal se superpondrá. El modal se cierra por separado.
-                    // Solo cerrar el menú si es un enlace de navegación de sección.
+                link.addEventListener('click', (event) => { 
                     const isModalButton = link.getAttribute('onclick') && link.getAttribute('onclick').includes('openInscripcionModal');
                     if (!isModalButton && navLinksContainer.classList.contains('active')) {
                         navLinksContainer.classList.remove('active');
                     }
-                    // Si es el botón de inscripción, la función openInscripcionModal(event) ya previene el default si es necesario.
                 });
             });
         }
@@ -1445,7 +1441,6 @@
                         // console.error(`Error in querySelector for targetId: ${targetIdAttribute}`, error);
                     }
                 } else if (targetIdAttribute === '#') {
-                    // Prevenir el salto para href="#" si tiene un onclick (como los modales)
                      if (this.hasAttribute('onclick')) {
                         e.preventDefault();
                     }
@@ -1563,7 +1558,7 @@
             if (!articuloModal) return;
             articuloModal.style.display = 'none';
             document.body.style.overflow = 'auto';
-        }
+        }; // <-- Punto y coma añadido aquí
         
         // --- Modal para Inscripción ---
         const inscripcionModal = document.getElementById('inscripcionModal');
@@ -1617,21 +1612,40 @@
         if(inscripcionFormEr) {
             inscripcionFormEr.addEventListener('submit', function(e) {
                 e.preventDefault();
+                
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Enviando...';
+                submitButton.disabled = true;
+
                 const formData = new FormData(this);
                 
-                let formOutput = "Datos del formulario de inscripción:\n";
-                for (let [key, value] of formData.entries()) {
-                    if (key === 'fotoCarnetBase64' && value) {
-                        formOutput += `${key}: (Imagen en Base64 - longitud: ${value.length})\n`;
+                // ***** REEMPLAZA ESTA LÍNEA CON LA URL DE TU GOOGLE APPS SCRIPT *****
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbytOdZlMpNNi_8pb9ioBRAD-FbcXjQQAjyzJFK-V39IKJZN4UUyrYSWT10XT85snQo/exec'; 
+
+                fetch(scriptURL, { 
+                    method: 'POST', 
+                    body: formData
+                })
+                .then(response => response.json()) 
+                .then(data => {
+                    console.log('Respuesta del script:', data);
+                    if(data.result === 'success'){
+                        alert('Inscripción enviada con éxito. ¡Gracias!');
                     } else {
-                        formOutput += `${key}: ${value}\n`;
+                        alert('Hubo un error al enviar la inscripción: ' + (data.error || 'Error desconocido del servidor.'));
                     }
-                }
-                console.log(formOutput); 
-                alert('Inscripción enviada (simulación). ¡Gracias!\nRevisa la consola para ver los datos (la foto del carnet se muestra como una cadena Base64).');
-                
-                this.reset(); 
-                closeInscripcionModal(); 
+                    this.reset(); 
+                    closeInscripcionModal(); 
+                })
+                .catch(error => {
+                    console.error('Error al enviar el formulario:', error);
+                    alert('Error al enviar la inscripción. Por favor, inténtalo de nuevo más tarde o contacta al administrador.');
+                })
+                .finally(() => {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                });
             });
         }
         
