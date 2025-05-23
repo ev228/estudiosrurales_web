@@ -729,7 +729,7 @@
             overflow-y: auto;
         }
         .modal-er-content.inscripcion-modal-content {
-            max-width: 550px; 
+            max-width: 600px; /* Un poco más ancho para acomodar campos */
         }
 
         .close-er-modal {
@@ -758,7 +758,7 @@
             line-height: 1.8;
             color: var(--gris-texto-oscuro);
         }
-        .modal-er-content .form-group { margin-bottom: 18px; }
+        .modal-er-content .form-group { margin-bottom: 15px; } /* Reducir margen para más campos */
         .modal-er-content .form-group label {
             font-size: 0.9rem;
             color: var(--verde-secundario);
@@ -784,17 +784,17 @@
             background-color: #A25C1F;
         }
         /* Estilos para el input de archivo y la vista previa de la foto */
-        #inscFotoEr {
-            padding: 10px; /* Ajustar padding si es necesario */
+        #inscFotoCarnetEr { /* ID actualizado para foto carnet */
+            padding: 10px; 
         }
-        #fotoPreviewEr {
+        #fotoCarnetPreviewEr { /* ID actualizado para foto carnet */
             max-width: 100%;
-            max-height: 200px; /* Altura máxima para la vista previa */
+            max-height: 200px; 
             margin-top: 10px;
             border-radius: var(--radio-bordes);
             border: 1px solid var(--gris-azulado-muy-claro);
-            object-fit: cover; /* Para que la imagen se ajuste bien */
-            display: none; /* Oculta hasta que se seleccione una imagen */
+            object-fit: cover; 
+            display: none; 
         }
 
 
@@ -879,6 +879,9 @@
             .nosotros-imagen { margin-top: 30px; }
 
             .proyectos-grid, .experiencia-grid { grid-template-columns: 1fr; }
+             .modal-er-content.inscripcion-modal-content {
+                max-width: 95%; 
+            }
         }
 
     </style>
@@ -903,7 +906,7 @@
                         <li><a href="#noticias-er">Noticias</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
-                    <a href="#" class="btn btn-header-inscribete" onclick="openInscripcionModal()">Inscríbete</a>
+                    <a href="#" class="btn btn-header-inscribete" onclick="openInscripcionModal(event)">Inscríbete</a>
                 </div>
                 <div class="menu-toggle" id="menuToggle">&#9776;</div>
             </nav>
@@ -959,7 +962,7 @@
                         <svg class="servicio-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm0-4H7v-2h4v2zm0-4H7V7h4v2zm8 8h-4V7h4v10z"/></svg>
                         <h3>Formación y Desarrollo de Capacidades</h3>
                         <p>Diseño e implementación de programas de capacitación, escuelas de formación y talleres especializados para líderes, comunidades y equipos técnicos.</p>
-                        <a href="#" class="btn-detalle" onclick="openInscripcionModal()">Conocer Programas &rarr;</a>
+                        <a href="#" class="btn-detalle" onclick="openInscripcionModal(event)">Conocer Programas &rarr;</a>
                     </div>
                     <div class="servicio-card fade-in" data-delay="0.3s">
                         <svg class="servicio-icon" viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg>
@@ -1004,7 +1007,7 @@
                                 <span class="tag-er">Liderazgo</span>
                                 <span class="tag-er">Maule</span>
                             </div>
-                            <button class="btn btn-ver-detalles-er tierra" onclick="openInscripcionModal()">Inscribirse</button>
+                            <button class="btn btn-ver-detalles-er tierra" onclick="openInscripcionModal(event)">Inscribirse</button>
                         </div>
                     </div>
                     <div class="proyecto-card-er fade-in" data-delay="0.2s">
@@ -1033,7 +1036,7 @@
                                 <span class="tag-er">Género</span>
                                 <span class="tag-er">RM</span>
                             </div>
-                            <button class="btn btn-ver-detalles-er verde" onclick="openInscripcionModal()">Inscribirse</button>
+                            <button class="btn btn-ver-detalles-er verde" onclick="openInscripcionModal(event)">Inscribirse</button>
                         </div>
                     </div>
                 </div>
@@ -1331,49 +1334,57 @@
             <h3>Formulario de Inscripción</h3>
             <form id="inscripcionFormEr">
                 <div class="form-group">
-                    <label for="inscNombreCompletoEr">Nombre Completo</label>
-                    <input type="text" id="inscNombreCompletoEr" name="nombreCompleto" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="inscRegionResidenciaEr">Región de Residencia</label>
-                    <input type="text" id="inscRegionResidenciaEr" name="regionResidencia" class="form-control" required>
-                </div>
-                <div class="form-group">
                     <label for="inscRutEr">RUT</label>
-                    <input type="text" id="inscRutEr" name="rut" class="form-control" required>
+                    <input type="text" id="inscRutEr" name="rut" class="form-control" required placeholder="Ej: 12345678-9">
                 </div>
                 <div class="form-group">
-                    <label for="inscEmpleadorEr">Empleador Actual</label>
-                    <input type="text" id="inscEmpleadorEr" name="empleadorActual" class="form-control" required>
+                    <label for="inscNombresEr">Nombres</label>
+                    <input type="text" id="inscNombresEr" name="nombres" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="inscTelefonoEr">Teléfono</label>
-                    <input type="tel" id="inscTelefonoEr" name="telefono" class="form-control" required>
+                    <label for="inscApellidoPaternoEr">Apellido Paterno</label>
+                    <input type="text" id="inscApellidoPaternoEr" name="apellidoPaterno" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="inscEmailEr">Correo Electrónico</label>
-                    <input type="email" id="inscEmailEr" name="email" class="form-control" required>
+                    <label for="inscApellidoMaternoEr">Apellido Materno</label>
+                    <input type="text" id="inscApellidoMaternoEr" name="apellidoMaterno" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="inscFotoEr">Foto (opcional)</label>
-                    <input type="file" id="inscFotoEr" name="foto" class="form-control" accept="image/*" capture="camera">
-                    <img id="fotoPreviewEr" src="#" alt="Vista previa de la foto" style="max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: var(--radio-bordes); border: 1px solid var(--gris-azulado-muy-claro); object-fit: cover; display: none;">
-                    <input type="hidden" id="inscFotoBase64Er" name="fotoBase64">
+                    <label for="inscFechaNacimientoEr">Fecha de Nacimiento</label>
+                    <input type="date" id="inscFechaNacimientoEr" name="fechaNacimiento" class="form-control" required>
+                </div>
+                 <div class="form-group">
+                    <label for="inscEdadEr">Edad</label>
+                    <input type="number" id="inscEdadEr" name="edad" class="form-control" required min="1" max="120">
                 </div>
                 <div class="form-group">
-                    <label for="inscEscuelaPostulaEr">Escuela a la que postula</label>
-                    <select id="inscEscuelaPostulaEr" name="escuelaPostula" class="form-control" required>
-                        <option value="">Seleccione una escuela...</option>
-                        <option value="escuela_rm">Escuela Sindical - RM</option>
-                        <option value="escuela_araucania">Escuela Sindical - Araucanía</option>
-                        <option value="otro_programa">Otro Programa/Curso</option>
+                    <label for="inscNacionalidadEr">Nacionalidad</label>
+                    <input type="text" id="inscNacionalidadEr" name="nacionalidad" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscSexoEr">Sexo</label>
+                    <select id="inscSexoEr" name="sexo" class="form-control" required>
+                        <option value="">Seleccione...</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                        <option value="prefiero_no_decir">Prefiero no decir</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="inscNivelEducacionalEr">Nivel Educacional</label>
+                    <input type="text" id="inscNivelEducacionalEr" name="nivelEducacional" class="form-control" required placeholder="Ej: Media completa, Universitaria incompleta, etc.">
+                </div>
+                <div class="form-group">
+                    <label for="inscFotoCarnetEr">Foto del Carnet (Frontal)</label>
+                    <input type="file" id="inscFotoCarnetEr" name="fotoCarnet" class="form-control" accept="image/*" capture="camera">
+                    <img id="fotoCarnetPreviewEr" src="#" alt="Vista previa del carnet" style="max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: var(--radio-bordes); border: 1px solid var(--gris-azulado-muy-claro); object-fit: contain; display: none;">
+                    <input type="hidden" id="inscFotoCarnetBase64Er" name="fotoCarnetBase64">
                 </div>
                 <button type="submit" class="btn btn-submit-modal">Enviar Inscripción</button>
             </form>
         </div>
     </div>
-
 
     <script>
         // --- Sticky Header ---
@@ -1397,10 +1408,15 @@
                 navLinksContainer.classList.toggle('active');
             });
             navLinksContainer.querySelectorAll('a').forEach(link => { 
-                link.addEventListener('click', () => {
-                    if (navLinksContainer.classList.contains('active')) {
+                link.addEventListener('click', (event) => { // Pasar 'event'
+                    // Si el enlace es para abrir el modal de inscripción, no cerrar el menú aún,
+                    // ya que el modal se superpondrá. El modal se cierra por separado.
+                    // Solo cerrar el menú si es un enlace de navegación de sección.
+                    const isModalButton = link.getAttribute('onclick') && link.getAttribute('onclick').includes('openInscripcionModal');
+                    if (!isModalButton && navLinksContainer.classList.contains('active')) {
                         navLinksContainer.classList.remove('active');
                     }
+                    // Si es el botón de inscripción, la función openInscripcionModal(event) ya previene el default si es necesario.
                 });
             });
         }
@@ -1429,9 +1445,9 @@
                         // console.error(`Error in querySelector for targetId: ${targetIdAttribute}`, error);
                     }
                 } else if (targetIdAttribute === '#') {
-                    if (this.getAttribute('onclick') && 
-                        (this.getAttribute('onclick').includes('openInscripcionModal()') || this.getAttribute('onclick').includes('openArticuloModal'))) {
-                         e.preventDefault(); 
+                    // Prevenir el salto para href="#" si tiene un onclick (como los modales)
+                     if (this.hasAttribute('onclick')) {
+                        e.preventDefault();
                     }
                 }
             });
@@ -1552,12 +1568,13 @@
         // --- Modal para Inscripción ---
         const inscripcionModal = document.getElementById('inscripcionModal');
         const inscripcionFormEr = document.getElementById('inscripcionFormEr');
-        const fotoInputEr = document.getElementById('inscFotoEr');
-        const fotoPreviewEr = document.getElementById('fotoPreviewEr');
-        const fotoBase64InputEr = document.getElementById('inscFotoBase64Er');
+        const fotoCarnetInputEr = document.getElementById('inscFotoCarnetEr'); 
+        const fotoCarnetPreviewEr = document.getElementById('fotoCarnetPreviewEr'); 
+        const fotoCarnetBase64InputEr = document.getElementById('inscFotoCarnetBase64Er'); 
 
 
-        function openInscripcionModal() {
+        function openInscripcionModal(event) {
+            if (event) event.preventDefault(); 
             if (!inscripcionModal) return;
             inscripcionModal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
@@ -1566,32 +1583,32 @@
             if (!inscripcionModal) return;
             inscripcionModal.style.display = 'none';
             document.body.style.overflow = 'auto';
-            if(inscripcionFormEr) inscripcionFormEr.reset(); // Limpiar formulario al cerrar
-            if(fotoPreviewEr) {
-                fotoPreviewEr.style.display = 'none'; // Ocultar vista previa
-                fotoPreviewEr.src = '#';
+            if(inscripcionFormEr) inscripcionFormEr.reset(); 
+            if(fotoCarnetPreviewEr) { 
+                fotoCarnetPreviewEr.style.display = 'none'; 
+                fotoCarnetPreviewEr.src = '#';
             }
-            if(fotoBase64InputEr) fotoBase64InputEr.value = ''; // Limpiar campo oculto
+            if(fotoCarnetBase64InputEr) fotoCarnetBase64InputEr.value = ''; 
         }
 
-        if (fotoInputEr && fotoPreviewEr && fotoBase64InputEr) {
-            fotoInputEr.addEventListener('change', function(event) {
+        if (fotoCarnetInputEr && fotoCarnetPreviewEr && fotoCarnetBase64InputEr) { 
+            fotoCarnetInputEr.addEventListener('change', function(event) {
                 const file = event.target.files[0];
                 if (file && file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        fotoPreviewEr.src = e.target.result;
-                        fotoPreviewEr.style.display = 'block';
-                        fotoBase64InputEr.value = e.target.result; // Guardar Base64
+                        fotoCarnetPreviewEr.src = e.target.result; 
+                        fotoCarnetPreviewEr.style.display = 'block'; 
+                        fotoCarnetBase64InputEr.value = e.target.result; 
                     }
                     reader.readAsDataURL(file);
                 } else {
-                    fotoPreviewEr.style.display = 'none';
-                    fotoPreviewEr.src = '#';
-                    fotoBase64InputEr.value = '';
-                    if (file) { // Si se seleccionó un archivo pero no es imagen
+                    fotoCarnetPreviewEr.style.display = 'none'; 
+                    fotoCarnetPreviewEr.src = '#'; 
+                    fotoCarnetBase64InputEr.value = ''; 
+                    if (file) { 
                         alert('Por favor, seleccione un archivo de imagen válido.');
-                        fotoInputEr.value = ''; // Limpiar el input file
+                        fotoCarnetInputEr.value = ''; 
                     }
                 }
             });
@@ -1601,27 +1618,20 @@
             inscripcionFormEr.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const formData = new FormData(this);
-                // El campo 'fotoBase64' ya está en formData si se seleccionó una imagen
                 
                 let formOutput = "Datos del formulario de inscripción:\n";
                 for (let [key, value] of formData.entries()) {
-                    if (key === 'fotoBase64' && value) {
+                    if (key === 'fotoCarnetBase64' && value) {
                         formOutput += `${key}: (Imagen en Base64 - longitud: ${value.length})\n`;
                     } else {
                         formOutput += `${key}: ${value}\n`;
                     }
                 }
                 console.log(formOutput); 
-                alert('Inscripción enviada (simulación). ¡Gracias!\nRevisa la consola para ver los datos (la imagen se muestra como una cadena Base64).');
+                alert('Inscripción enviada (simulación). ¡Gracias!\nRevisa la consola para ver los datos (la foto del carnet se muestra como una cadena Base64).');
                 
-                // Lógica para enviar a Google Apps Script (ejemplo conceptual)
-                // const scriptURL = 'URL_DE_TU_GOOGLE_APPS_SCRIPT';
-                // fetch(scriptURL, { method: 'POST', body: formData})
-                //   .then(response => console.log('Success!', response))
-                //   .catch(error => console.error('Error!', error.message));
-
-                this.reset(); // Limpia campos visibles
-                closeInscripcionModal(); // Cierra y limpia vista previa/campo oculto
+                this.reset(); 
+                closeInscripcionModal(); 
             });
         }
         
