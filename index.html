@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudios Rurales - Consultoría e Investigación Estratégica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta Rural */
+            --verde-principal: #4A7729; 
+            --verde-secundario: #6A994E; 
+            --acento-tierra: #BC6C25;   
+            --beige-claro: #F5EFE6;     
+            --gris-texto-oscuro: #3D405B; 
+            --gris-azulado-muy-claro: #E0E2DB; 
+            
+            --blanco: #ffffff;
+            --sombra-sutil: 0 4px 15px rgba(0,0,0,0.06);
+            --sombra-elevada: 0 8px 25px rgba(0,0,0,0.1);
+            --radio-bordes: 8px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--gris-texto-oscuro);
+            background-color: var(--blanco);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        main section:nth-child(odd) { 
+            background-color: var(--blanco);
+        }
+        main section:nth-child(even) {
+            background-color: var(--beige-claro);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--verde-principal); 
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--acento-tierra); 
+        }
+
+        .section-header p.subtitle {
+            font-size: 1.1rem;
+            color: #5a5a5a; 
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .main-header {
+            background-color: var(--blanco);
+            box-shadow: var(--sombra-sutil);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .main-header.scrolled {
+            background-color: rgba(255,255,255,0.97); 
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo-container .logo-text {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--verde-principal); 
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .logo-container .logo-icon {
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            fill: var(--verde-principal); 
+        }
+
+        .nav-links-container { 
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px; 
+            margin-right: 15px; 
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--verde-secundario); 
+            font-weight: 500;
+            font-size: 0.85rem; 
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--acento-tierra); 
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--acento-tierra); 
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .btn-header-inscribete {
+            background-color: var(--acento-tierra); 
+            color: var(--blanco);
+            padding: 0.6rem 1.2rem; 
+            border-radius: var(--radio-bordes);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-header-inscribete:hover {
+            background-color: #A25C1F; 
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: var(--verde-principal); 
+            cursor: pointer;
+            margin-left: 15px; 
+        }
+
+        .hero {
+            background: linear-gradient(rgba(50, 70, 30, 0.7), rgba(50, 70, 30, 0.6)), url('https://placehold.co/1920x1080/A98B72/F5EFE6?text=Paisaje+Rural+Sutil') no-repeat center center/cover;
+            color: var(--blanco);
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 75px; 
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            font-family: 'Montserrat', sans-serif; 
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 35px;
+            font-family: 'Montserrat', sans-serif; 
+            opacity: 0.95; 
+            font-weight: 400; 
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 14px 35px;
+            border-radius: var(--radio-bordes);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--acento-tierra); 
+            color: var(--blanco);
+        }
+        .btn-primary:hover {
+            background-color: #A25C1F; 
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(188, 108, 37, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--blanco);
+            border-color: var(--acento-tierra); 
+        }
+        .btn-secondary:hover {
+            background-color: var(--acento-tierra);
+            color: var(--blanco);
+            transform: translateY(-3px);
+        }
+
+        #nosotros .nosotros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        .nosotros-texto p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .nosotros-imagen img {
+            width: 100%;
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-elevada);
+        }
+        .enfoque-item {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--blanco); 
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-sutil);
+            border-left: 4px solid var(--acento-tierra); 
+        }
+        .enfoque-item h4 {
+            font-size: 1.3rem;
+            color: var(--verde-principal); 
+            margin-bottom: 10px;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .servicio-card {
+            background-color: var(--blanco);
+            padding: 35px;
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-sutil);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .servicio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-elevada);
+        }
+        .servicio-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px;
+            fill: var(--acento-tierra); 
+        }
+        .servicio-card h3 {
+            font-size: 1.5rem;
+            color: var(--verde-principal); 
+            margin-bottom: 15px;
+        }
+        .servicio-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .servicio-card .btn-detalle {
+            font-size: 0.9rem;
+            color: var(--acento-tierra); 
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto; 
+        }
+        .servicio-card .btn-detalle:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Sección Experiencia --- */
+        #experiencia {
+            /* background-color: var(--beige-claro); Ya se maneja con nth-child */
+        }
+        .experiencia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .experiencia-card {
+            background-color: var(--blanco);
+            border-radius: var(--radio-bordes);
+            padding: 25px;
+            box-shadow: var(--sombra-sutil);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .experiencia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-elevada);
+        }
+        .experiencia-card h4 {
+            color: var(--verde-principal);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+        .experiencia-card .tipo-proyecto {
+            display: inline-block;
+            background-color: var(--gris-azulado-muy-claro);
+            color: var(--verde-secundario);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .experiencia-card .ano-proyecto {
+            font-size: 0.9rem;
+            color: #777;
+            font-weight: 500;
+        }
+
+
+        .proyectos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        .proyecto-card-er {
+            background-color: var(--blanco); 
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-sutil);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .proyecto-card-er:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-elevada);
+        }
+        .proyecto-header-er {
+            padding: 25px;
+            color: var(--blanco);
+        }
+        .proyecto-header-er.maule { 
+            background: linear-gradient(135deg, var(--acento-tierra) 0%, #A25C1F 100%); 
+        }
+        .proyecto-header-er.rm { 
+            background: linear-gradient(135deg, var(--verde-secundario) 0%, var(--verde-principal) 100%); 
+        }
+        .proyecto-header-er h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .proyecto-header-er .region-er {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .proyecto-body-er {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .proyecto-body-er p {
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            color: var(--gris-texto-oscuro);
+        }
+        .proyecto-stats-er {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .stat-item-er {
+            padding: 15px;
+            background-color: var(--beige-claro); 
+            border-radius: var(--radio-bordes);
+        }
+        .stat-value-er {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--verde-principal); 
+            margin-bottom: 3px;
+        }
+        .stat-label-er {
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .beneficios-list-er {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 0;
+        }
+        .beneficios-list-er li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--gris-texto-oscuro);
+        }
+        .beneficios-list-er li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--verde-secundario); 
+            font-weight: bold;
+        }
+        .proyecto-progress-er { margin-bottom: 20px; }
+        .progress-label-er {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .progress-bar-er {
+            width: 100%;
+            height: 12px;
+            background-color: var(--gris-azulado-muy-claro); 
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .progress-fill-er {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1.5s ease-in-out;
+        }
+        .progress-fill-er.tierra { background-color: var(--acento-tierra); }
+        .progress-fill-er.verde { background-color: var(--verde-secundario); }
+
+        .proyecto-tags-er {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .tag-er {
+            padding: 5px 12px;
+            background-color: var(--gris-azulado-muy-claro); 
+            color: var(--verde-principal); 
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .btn-ver-detalles-er {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: var(--radio-bordes);
+            color: var(--blanco);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+        .btn-ver-detalles-er.tierra { background-color: var(--acento-tierra); }
+        .btn-ver-detalles-er.verde { background-color: var(--verde-secundario); }
+        .btn-ver-detalles-er:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .perspectivas-grid, .noticias-grid-er {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .articulo-card, .noticia-card-er { 
+            background-color: var(--blanco);
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-sutil);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .articulo-card:hover, .noticia-card-er:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-elevada);
+        }
+        .articulo-imagen img, .noticia-imagen-er img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .articulo-contenido, .noticia-contenido-er {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .articulo-contenido h4, .noticia-contenido-er h4 {
+            font-size: 1.3rem;
+            color: var(--verde-principal); 
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .articulo-meta, .noticia-meta-er {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .articulo-meta .fecha, .noticia-meta-er .fecha { color: var(--acento-tierra); font-weight: 500;}
+        
+        .articulo-extracto, .noticia-extracto-er {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .articulo-contenido .btn-detalle, .noticia-contenido-er .btn-detalle {
+            font-size: 0.9rem;
+            color: var(--acento-tierra); 
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto; 
+        }
+        .articulo-contenido .btn-detalle:hover, .noticia-contenido-er .btn-detalle:hover {
+            text-decoration: underline;
+        }
+
+        .contacto-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            background-color: var(--blanco); 
+            padding: 40px;
+            border-radius: var(--radio-bordes);
+            box-shadow: var(--sombra-sutil);
+        }
+        .info-contacto h3, .formulario-contacto h3 {
+            font-size: 1.8rem;
+            color: var(--verde-principal); 
+            margin-bottom: 25px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--gris-texto-oscuro);
+        }
+        .info-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--acento-tierra); 
+            flex-shrink: 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gris-azulado-muy-claro); 
+            border-radius: var(--radio-bordes);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--acento-tierra); 
+        }
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background-color: var(--verde-principal); 
+            color: var(--blanco);
+            padding: 14px 30px;
+            border: none;
+        }
+        .btn-submit:hover {
+            background-color: var(--verde-secundario); 
+            transform: translateY(-2px);
+        }
+
+        .main-footer {
+            background-color: var(--verde-principal); 
+            color: var(--beige-claro); 
+            padding: 50px 0;
+            text-align: center;
+        }
+        .footer-logo .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--blanco);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+         .footer-logo .logo-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            fill: var(--blanco);
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--gris-azulado-muy-claro); 
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--acento-tierra); 
+        }
+        .social-media-links {
+            margin-bottom: 20px;
+        }
+        .social-media-links a {
+            margin: 0 12px;
+            text-decoration: none;
+        }
+        .social-media-links svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--gris-azulado-muy-claro); 
+            transition: fill 0.3s ease;
+        }
+        .social-media-links a:hover svg {
+            fill: var(--acento-tierra); 
+        }
+        .copyright {
+            font-size: 0.85rem;
+            color: #c8c8c0; 
+        }
+
+        .modal-er {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); 
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(3px);
+        }
+        .modal-er-content {
+            background-color: var(--blanco);
+            margin: auto;
+            padding: 30px 35px;
+            border-radius: var(--radio-bordes);
+            width: 90%;
+            max-width: 700px; 
+            box-shadow: var(--sombra-elevada);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-er-content.inscripcion-modal-content {
+            max-width: 550px; 
+        }
+
+        .close-er-modal {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-er-modal:hover,
+        .close-er-modal:focus {
+            color: var(--verde-principal);
+            text-decoration: none;
+        }
+        .modal-er-content h3 { 
+            color: var(--verde-principal);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .modal-er-body p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--gris-texto-oscuro);
+        }
+        .modal-er-content .form-group { margin-bottom: 18px; }
+        .modal-er-content .form-group label {
+            font-size: 0.9rem;
+            color: var(--verde-secundario);
+            margin-bottom: 6px;
+        }
+        .modal-er-content .form-control {
+            background-color: var(--beige-claro);
+            border: 1px solid var(--gris-azulado-muy-claro);
+        }
+        .modal-er-content .form-control:focus {
+            background-color: var(--blanco);
+            border-color: var(--acento-tierra);
+        }
+        .modal-er-content .btn-submit-modal {
+            background-color: var(--acento-tierra);
+            color: var(--blanco);
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .modal-er-content .btn-submit-modal:hover {
+            background-color: #A25C1F;
+        }
+        /* Estilos para el input de archivo y la vista previa de la foto */
+        #inscFotoEr {
+            padding: 10px; /* Ajustar padding si es necesario */
+        }
+        #fotoPreviewEr {
+            max-width: 100%;
+            max-height: 200px; /* Altura máxima para la vista previa */
+            margin-top: 10px;
+            border-radius: var(--radio-bordes);
+            border: 1px solid var(--gris-azulado-muy-claro);
+            object-fit: cover; /* Para que la imagen se ajuste bien */
+            display: none; /* Oculta hasta que se seleccione una imagen */
+        }
+
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .fade-in.animated { 
+            animation: fadeInAnimation 0.8s ease-out forwards;
+        }
+        @keyframes fadeInAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content p { font-size: 1.1rem; }
+            .section-header h2 { font-size: 2.4rem; }
+            .contacto-wrapper { grid-template-columns: 1fr; }
+
+            .nav-links { gap: 15px; margin-right: 10px;} 
+            .nav-links a { font-size: 0.8rem; } 
+            .btn-header-inscribete { padding: 0.5rem 1rem; font-size: 0.8rem;}
+        }
+
+        @media (max-width: 768px) {
+            .nav-links-container { 
+                 display: none; 
+            }
+            .nav-links-container.active { 
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 75px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--blanco);
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                align-items: stretch; 
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .nav-links li { width: 100%; text-align: center; }
+            .nav-links a {
+                padding: 12px 0; 
+                display: block;
+                width: 100%;
+                font-size: 0.95rem; 
+            }
+            .nav-links a::after { display: none; } 
+
+            .btn-header-inscribete { 
+                display: block;
+                margin: 10px 20px; 
+                text-align: center;
+                font-size: 0.95rem;
+            }
+            
+            .menu-toggle { display: block; } 
+
+
+            .hero { height: auto; min-height: 450px; padding: 60px 0; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; }
+            .btn { padding: 12px 25px; font-size: 0.9rem;}
+
+            section { padding: 60px 0; }
+            .section-header h2 { font-size: 2rem; }
+            .section-header p.subtitle { font-size: 1rem; }
+            
+            .nosotros-grid { grid-template-columns: 1fr; }
+            .nosotros-imagen { margin-top: 30px; }
+
+            .proyectos-grid, .experiencia-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="mainHeader">
+        <div class="container main-nav">
+            <a href="#inicio" class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M25 2C12.318 2 2 12.318 2 25s10.318 23 23 23 23-10.318 23-23S37.682 2 25 2zm0 4c10.493 0 19 8.507 19 19s-8.507 19-19 19-19-8.507-19-19S14.507 6 25 6zm-2 8v10h-4V14h4zm6 0v10h-4V14h4zm-3 12c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-8 4l4 4 4-4h-8zM15 34h20v2H15v-2z"/></svg>
+                <span class="logo-text">Estudios Rurales</span>
+            </a>
+            <nav class="nav-container">
+                <div class="nav-links-container" id="navLinksContainer">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#inicio" class="active">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#proyectos-ejecucion">Proyectos</a></li>
+                        <li><a href="#experiencia">Experiencia</a></li>
+                        <li><a href="#perspectivas">Perspectivas</a></li>
+                        <li><a href="#noticias-er">Noticias</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-header-inscribete" onclick="openInscripcionModal()">Inscríbete</a>
+                </div>
+                <div class="menu-toggle" id="menuToggle">&#9776;</div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container hero-content fade-in">
+                <h1>Análisis Profundo para el Desarrollo Sostenible del Territorio</h1>
+                <p>En Estudios Rurales transformamos datos en conocimiento estratégico, impulsando decisiones informadas para el progreso de comunidades y organizaciones.</p>
+                <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+                <a href="#contacto" class="btn btn-secondary" style="margin-left:15px;">Contáctanos</a>
+            </div>
+        </section>
+
+        <section id="nosotros">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Quiénes Somos</h2>
+                    <p class="subtitle">Comprometidos con la investigación rigurosa y la consultoría de impacto para el sector rural y sus dinámicas de desarrollo.</p>
+                </div>
+                <div class="nosotros-grid">
+                    <div class="nosotros-texto fade-in" data-delay="0.2s">
+                        <p>Estudios Rurales es una consultora especializada en la generación de conocimiento aplicado y el fortalecimiento de capacidades para actores clave del desarrollo territorial. Nacemos de la convicción de que una comprensión profunda de las realidades locales es fundamental para diseñar e implementar estrategias efectivas y sostenibles.</p>
+                        <p>Nuestro equipo multidisciplinario combina la solidez académica con una vasta experiencia en terreno, permitiéndonos ofrecer diagnósticos precisos, análisis prospectivos y soluciones innovadoras adaptadas a cada contexto.</p>
+                        <div class="enfoque-item">
+                            <h4>Nuestro Enfoque Diferencial</h4>
+                            <p>Basamos nuestro trabajo en la participación activa, la co-construcción de soluciones y el uso de metodologías mixtas que integran lo cuantitativo y cualitativo para una comprensión holística.</p>
+                        </div>
+                    </div>
+                    <div class="nosotros-imagen fade-in" data-delay="0.4s">
+                        <img src="https://placehold.co/600x450/A98B72/FFFFFF?text=Equipo+Estudios+Rurales+en+Campo" alt="Imagen de equipo Estudios Rurales" onerror="this.src='https://placehold.co/600x450/e0e0e0/777777?text=Imagen+No+Disponible';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Nuestros Servicios</h2>
+                    <p class="subtitle">Ofrecemos un portafolio integral de servicios diseñados para responder a las necesidades específicas de organizaciones públicas, privadas y de la sociedad civil.</p>
+                </div>
+                <div class="servicios-grid">
+                    <div class="servicio-card fade-in" data-delay="0.1s">
+                        <svg class="servicio-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93V4.07z"/></svg>
+                        <h3>Investigación y Diagnóstico Territorial</h3>
+                        <p>Estudios socioeconómicos, análisis de cadenas de valor, diagnósticos participativos y mapeo de actores para una comprensión profunda del territorio.</p>
+                        <a href="#contacto" class="btn-detalle">Solicitar Información &rarr;</a>
+                    </div>
+                    <div class="servicio-card fade-in" data-delay="0.2s">
+                        <svg class="servicio-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-2h4v2zm0-4H7v-2h4v2zm0-4H7V7h4v2zm8 8h-4V7h4v10z"/></svg>
+                        <h3>Formación y Desarrollo de Capacidades</h3>
+                        <p>Diseño e implementación de programas de capacitación, escuelas de formación y talleres especializados para líderes, comunidades y equipos técnicos.</p>
+                        <a href="#" class="btn-detalle" onclick="openInscripcionModal()">Conocer Programas &rarr;</a>
+                    </div>
+                    <div class="servicio-card fade-in" data-delay="0.3s">
+                        <svg class="servicio-icon" viewBox="0 0 24 24"><path d="M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z"/></svg>
+                        <h3>Consultoría Estratégica y Políticas Públicas</h3>
+                        <p>Asesoramiento en planificación estratégica, diseño de políticas, evaluación de programas y proyectos con enfoque en el desarrollo rural sostenible.</p>
+                        <a href="#contacto" class="btn-detalle">Explorar Soluciones &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos-ejecucion">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Proyectos en Ejecución</h2>
+                    <p class="subtitle">Conoce las iniciativas y escuelas de formación que estamos desarrollando actualmente para potenciar el liderazgo y las capacidades en el ámbito rural y sindical.</p>
+                </div>
+                <div class="proyectos-grid">
+                    <div class="proyecto-card-er fade-in" data-delay="0.1s">
+                        <div class="proyecto-header-er maule">
+                            <h3>Escuela de Formación Sindical</h3>
+                            <p class="region-er">Región del Maule</p>
+                        </div>
+                        <div class="proyecto-body-er">
+                            <p>Programa integral de formación sindical con metodología híbrida, combinando sesiones presenciales y virtuales para el fortalecimiento de las capacidades de liderazgo y negociación colectiva. Las clases presenciales se realizarán en Talca.</p>
+                            <div class="proyecto-stats-er">
+                                <div class="stat-item-er"><div class="stat-value-er">180</div><div class="stat-label-er">Horas</div></div>
+                                <div class="stat-item-er"><div class="stat-value-er">30</div><div class="stat-label-er">Semanas</div></div>
+                            </div>
+                            <ul class="beneficios-list-er">
+                                <li>Certificado oficial</li>
+                                <li>Bono de movilización y asistencia</li>
+                                <li>Materiales impresos y digitales</li>
+                                <li>Plataforma LMS y mentorías</li>
+                            </ul>
+                            <div class="proyecto-progress-er">
+                                <div class="progress-label-er"><span>Progreso Inscripciones</span><span>25%</span></div>
+                                <div class="progress-bar-er"><div class="progress-fill-er tierra" style="width: 25%;"></div></div>
+                            </div>
+                            <div class="proyecto-tags-er">
+                                <span class="tag-er">Formación Híbrida</span>
+                                <span class="tag-er">Liderazgo</span>
+                                <span class="tag-er">Maule</span>
+                            </div>
+                            <button class="btn btn-ver-detalles-er tierra" onclick="openInscripcionModal()">Inscribirse</button>
+                        </div>
+                    </div>
+                    <div class="proyecto-card-er fade-in" data-delay="0.2s">
+                        <div class="proyecto-header-er rm">
+                            <h3>Escuela de Formación Sindical</h3>
+                            <p class="region-er">Región Metropolitana</p>
+                        </div>
+                        <div class="proyecto-body-er">
+                            <p>Formación avanzada para dirigentes sindicales con enfoque en transparencia, perspectiva de género y articulación de redes digitales inter-empresa. Las clases presenciales se realizarán en Santiago.</p>
+                             <div class="proyecto-stats-er">
+                                <div class="stat-item-er"><div class="stat-value-er">180</div><div class="stat-label-er">Horas</div></div>
+                                <div class="stat-item-er"><div class="stat-value-er">30</div><div class="stat-label-er">Semanas</div></div>
+                            </div>
+                            <ul class="beneficios-list-er">
+                                <li>Certificado oficial</li>
+                                <li>Bono de movilización y asistencia</li>
+                                <li>Materiales didácticos completos</li>
+                                <li>Repositorio multimedia</li>
+                            </ul>
+                            <div class="proyecto-progress-er">
+                                <div class="progress-label-er"><span>Progreso Inscripciones</span><span>40%</span></div>
+                                <div class="progress-bar-er"><div class="progress-fill-er verde" style="width: 40%;"></div></div>
+                            </div>
+                            <div class="proyecto-tags-er">
+                                <span class="tag-er">Formación Avanzada</span>
+                                <span class="tag-er">Género</span>
+                                <span class="tag-er">RM</span>
+                            </div>
+                            <button class="btn btn-ver-detalles-er verde" onclick="openInscripcionModal()">Inscribirse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experiencia">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Nuestra Experiencia</h2>
+                    <p class="subtitle">Un recorrido por algunos de los proyectos que hemos desarrollado, demostrando nuestro compromiso y capacidad en diversas áreas del desarrollo rural.</p>
+                </div>
+                <div class="experiencia-grid">
+                    <div class="experiencia-card fade-in" data-delay="0.1s">
+                        <h4>Dialogo social</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2024</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.15s">
+                        <h4>Apoyo técnico</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2024</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.2s">
+                        <h4>FEP - Mujeres, informalidad</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.25s">
+                        <h4>Formación Sindical (A)</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2023</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.3s">
+                        <h4>Formación Sindical (B)</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2023</p>
+                    </div>
+                     <div class="experiencia-card fade-in" data-delay="0.35s">
+                        <h4>Asistencia Técnica APR</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2023</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.4s">
+                        <h4>Talleres de Ideación</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2023</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.1s">
+                        <h4>Identificación y caracterización</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.15s">
+                        <h4>Sistematización de resultados</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.2s">
+                        <h4>Implementación Final APR</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.25s">
+                        <h4>Ajuste de medio término</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.3s">
+                        <h4>Evaluación de medios</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.35s">
+                        <h4>Taller Efectos de la crisis climática</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.4s">
+                        <h4>Puesta en marcha piloto</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2022</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.1s">
+                        <h4>Estudio: Caracterización Rural</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.15s">
+                        <h4>Asesoría en Comunicación (A)</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.2s">
+                        <h4>Asesoría en Comunicación (B)</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.25s">
+                        <h4>Estrategia Comunicacional</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.3s">
+                        <h4>Diseño de Investigación en Innovación Social</h4>
+                        <span class="tipo-proyecto">Innovación</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.35s">
+                        <h4>Org. conferencias</h4>
+                        <span class="tipo-proyecto">Difusión</span>
+                        <p class="ano-proyecto">Año: 2021</p>
+                    </div>
+                    <div class="experiencia-card fade-in" data-delay="0.4s">
+                        <h4>Formación Sindical (C)</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2019</p>
+                    </div>
+                     <div class="experiencia-card fade-in" data-delay="0.1s">
+                        <h4>Formación Sindical (D)</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2024</p>
+                    </div>
+                     <div class="experiencia-card fade-in" data-delay="0.15s">
+                        <h4>Formación Sindical (E)</h4>
+                        <span class="tipo-proyecto">Formación</span>
+                        <p class="ano-proyecto">Año: 2024</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="perspectivas">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Perspectivas y Análisis</h2>
+                    <p class="subtitle">Compartimos nuestras reflexiones, estudios recientes y análisis sobre los desafíos y oportunidades del desarrollo rural en la actualidad.</p>
+                </div>
+                <div class="perspectivas-grid">
+                     <article class="articulo-card fade-in" data-delay="0.1s">
+                        <div class="articulo-imagen">
+                            <img src="https://placehold.co/400x250/4A7729/FFFFFF?text=Concentración+Tierras+Chile" alt="Concentración de tierras y pobreza rural en Chile" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                        </div>
+                        <div class="articulo-contenido">
+                            <h4>Estudio Revela Impacto de Concentración de Tierras en Pobreza Rural Chilena</h4>
+                            <p class="articulo-meta"><span class="fecha">21 Mayo, 2025</span> | Estudios Rurales</p>
+                            <p class="articulo-extracto">Una nueva investigación sobre 253 municipios chilenos indica que la alta concentración de la propiedad de la tierra incrementa la probabilidad de pobreza en zonas con acceso limitado a riego. Este fenómeno, exacerbado por el cambio climático, subraya la necesidad de revisar los regímenes de propiedad para asegurar un desarrollo territorial equitativo y resiliente.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_concentracion_tierra')">Leer Más &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="articulo-card fade-in" data-delay="0.2s">
+                        <div class="articulo-imagen">
+                            <img src="https://placehold.co/400x250/BC6C25/FFFFFF?text=Política+Desarrollo+Rural" alt="Política de Desarrollo Rural y propiedad" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                        </div>
+                        <div class="articulo-contenido">
+                            <h4>Análisis Crítico: ¿Considera la Política de Desarrollo Rural la Realidad de la Tenencia de Tierra?</h4>
+                            <p class="articulo-meta"><span class="fecha">21 Mayo, 2025</span> | Estudios Rurales</p>
+                            <p class="articulo-extracto">Un análisis reciente de la Política Nacional de Desarrollo Rural (PNDR) de Chile sugiere una contradicción fundamental: mientras promueve la competitividad, omite sistemáticamente el impacto de la concentración de la tierra. El estudio argumenta que la naturaleza individual y absoluta de la propiedad rural en Chile dificulta su vinculación estratégica con fenómenos espaciales y globales, pudiendo limitar la efectividad de la política.</p>
+                             <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_pndr_propiedad')">Leer Más &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <section id="noticias-er">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Últimas Noticias</h2>
+                    <p class="subtitle">Manténgase informado sobre nuestras actividades recientes, lanzamientos de programas y contribuciones al debate sobre el desarrollo rural.</p>
+                </div>
+                <div class="noticias-grid-er">
+                    <article class="noticia-card-er fade-in" data-delay="0.1s">
+                        <div class="noticia-imagen-er">
+                            <img src="https://placehold.co/400x250/A98B72/FFFFFF?text=Análisis+Agrícola" alt="Imagen Artículo 1" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                        </div>
+                        <div class="noticia-contenido-er">
+                            <h4>Desafíos de la Agricultura Familiar en el Siglo XXI</h4>
+                            <p class="noticia-meta-er"><span class="fecha">15 Mayo, 2025</span> | Por Equipo Estudios Rurales</p>
+                            <p class="noticia-extracto-er">Un análisis sobre la resiliencia y adaptación de la agricultura familiar frente al cambio climático y las dinámicas de mercado.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo1_perspectivas')">Leer Más &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="noticia-card-er fade-in" data-delay="0.2s">
+                        <div class="noticia-imagen-er">
+                            <img src="https://placehold.co/400x250/6A994E/FFFFFF?text=Desarrollo+Comunitario" alt="Imagen Artículo 2" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                        </div>
+                        <div class="noticia-contenido-er">
+                            <h4>El Rol de la Mujer en el Desarrollo Rural Sostenible</h4>
+                            <p class="noticia-meta-er"><span class="fecha">02 Mayo, 2025</span> | Por Dra. Elena Valdés</p>
+                            <p class="noticia-extracto-er">Visibilizando la contribución fundamental de las mujeres rurales y las brechas de género persistentes.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo2_perspectivas')">Leer Más &rarr;</a>
+                        </div>
+                    </article>
+                    <article class="noticia-card-er fade-in" data-delay="0.3s">
+                        <div class="noticia-imagen-er">
+                            <img src="https://placehold.co/400x250/BC6C25/FFFFFF?text=Innovación+Rural" alt="Imagen Artículo 3" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                        </div>
+                        <div class="noticia-contenido-er">
+                            <h4>Innovación Tecnológica para la Pequeña Agricultura</h4>
+                            <p class="noticia-meta-er"><span class="fecha">20 Abril, 2025</span> | Por Mg. Javier Torres</p>
+                            <p class="noticia-extracto-er">Explorando cómo las nuevas tecnologías pueden potenciar la productividad y sostenibilidad de los pequeños productores.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo3_perspectivas')">Leer Más &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2>Conversemos</h2>
+                    <p class="subtitle">Estamos listos para escuchar sus necesidades y explorar cómo podemos colaborar. Contáctenos para más información o para agendar una reunión.</p>
+                </div>
+                <div class="contacto-wrapper fade-in" data-delay="0.2s">
+                    <div class="info-contacto">
+                        <h3>Información de Contacto</h3>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <p>Av. Principal 123, Oficina 405<br>Ciudad Capital, País</p>
+                        </div>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <p>+56 2 2345 6789<br>+56 9 8765 4321</p>
+                        </div>
+                        <div class="info-item">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <p>contacto@estudiosrurales.cl<br>proyectos@estudiosrurales.cl</p>
+                        </div>
+                    </div>
+                    <div class="formulario-contacto">
+                        <h3>Escríbanos un Mensaje</h3>
+                        <form id="contactFormEr">
+                            <div class="form-group">
+                                <label for="nombreEr">Nombre Completo</label>
+                                <input type="text" id="nombreEr" name="nombre" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailEr">Correo Electrónico</label>
+                                <input type="email" id="emailEr" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="asuntoEr">Asunto</label>
+                                <input type="text" id="asuntoEr" name="asunto" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="mensajeEr">Mensaje</label>
+                                <textarea id="mensajeEr" name="mensaje" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-logo">
+                 <svg class="logo-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M25 2C12.318 2 2 12.318 2 25s10.318 23 23 23 23-10.318 23-23S37.682 2 25 2zm0 4c10.493 0 19 8.507 19 19s-8.507 19-19 19-19-8.507-19-19S14.507 6 25 6zm-2 8v10h-4V14h4zm6 0v10h-4V14h4zm-3 12c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-8 4l4 4 4-4h-8zM15 34h20v2H15v-2z"/></svg>
+                <span class="logo-text">Estudios Rurales</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#proyectos-ejecucion">Proyectos</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#perspectivas">Perspectivas</a></li>
+                <li><a href="#noticias-er">Noticias</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#">Política de Privacidad</a></li>
+            </ul>
+            <div class="social-media-links">
+                <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-.424.728-.666 1.584-.666 2.477 0 1.61.823 3.027 2.074 3.863-.766-.024-1.483-.234-2.11-.583v.06c0 2.254 1.603 4.134 3.731 4.563-.389.106-.8.163-1.225.163-.3 0-.592-.028-.875-.082.593 1.846 2.313 3.192 4.35 3.23-.004.013-.008.026-.012.039-1.59 1.247-3.604 1.991-5.786 1.991-.375 0-.745-.022-1.109-.065 2.058 1.32 4.506 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.202-.005-.403-.014-.603.91-.658 1.697-1.476 2.323-2.41z"/></svg></a>
+            </div>
+            <p class="copyright">&copy; <span id="currentYear"></span> Estudios Rurales. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <div id="articuloModal" class="modal-er">
+        <div class="modal-er-content">
+            <span class="close-er-modal" onclick="closeArticuloModal()">&times;</span>
+            <h3 id="modalArticuloTitulo">Título del Contenido</h3>
+            <div id="modalArticuloCuerpo" class="modal-er-body">
+                </div>
+        </div>
+    </div>
+
+    <div id="inscripcionModal" class="modal-er">
+        <div class="modal-er-content inscripcion-modal-content">
+            <span class="close-er-modal" onclick="closeInscripcionModal()">&times;</span>
+            <h3>Formulario de Inscripción</h3>
+            <form id="inscripcionFormEr">
+                <div class="form-group">
+                    <label for="inscNombreCompletoEr">Nombre Completo</label>
+                    <input type="text" id="inscNombreCompletoEr" name="nombreCompleto" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscRegionResidenciaEr">Región de Residencia</label>
+                    <input type="text" id="inscRegionResidenciaEr" name="regionResidencia" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscRutEr">RUT</label>
+                    <input type="text" id="inscRutEr" name="rut" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscEmpleadorEr">Empleador Actual</label>
+                    <input type="text" id="inscEmpleadorEr" name="empleadorActual" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscTelefonoEr">Teléfono</label>
+                    <input type="tel" id="inscTelefonoEr" name="telefono" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscEmailEr">Correo Electrónico</label>
+                    <input type="email" id="inscEmailEr" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="inscFotoEr">Foto (opcional)</label>
+                    <input type="file" id="inscFotoEr" name="foto" class="form-control" accept="image/*" capture="camera">
+                    <img id="fotoPreviewEr" src="#" alt="Vista previa de la foto" style="max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: var(--radio-bordes); border: 1px solid var(--gris-azulado-muy-claro); object-fit: cover; display: none;">
+                    <input type="hidden" id="inscFotoBase64Er" name="fotoBase64">
+                </div>
+                <div class="form-group">
+                    <label for="inscEscuelaPostulaEr">Escuela a la que postula</label>
+                    <select id="inscEscuelaPostulaEr" name="escuelaPostula" class="form-control" required>
+                        <option value="">Seleccione una escuela...</option>
+                        <option value="escuela_rm">Escuela Sindical - RM</option>
+                        <option value="escuela_araucania">Escuela Sindical - Araucanía</option>
+                        <option value="otro_programa">Otro Programa/Curso</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-submit-modal">Enviar Inscripción</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Sticky Header ---
+        const header = document.getElementById('mainHeader');
+        if (header) {
+            window.onscroll = function() {
+                if (window.pageYOffset > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            };
+        }
+
+
+        // --- Mobile Menu ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinksContainer = document.getElementById('navLinksContainer'); 
+        if (menuToggle && navLinksContainer) {
+            menuToggle.addEventListener('click', () => {
+                navLinksContainer.classList.toggle('active');
+            });
+            navLinksContainer.querySelectorAll('a').forEach(link => { 
+                link.addEventListener('click', () => {
+                    if (navLinksContainer.classList.contains('active')) {
+                        navLinksContainer.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+
+        // --- Smooth Scrolling & Active Nav Link ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetIdAttribute = this.getAttribute('href');
+                
+                if (targetIdAttribute && targetIdAttribute.length > 1 && targetIdAttribute.startsWith('#')) { 
+                    try {
+                        const targetElement = document.querySelector(targetIdAttribute);
+                        if (targetElement) {
+                            e.preventDefault(); 
+                            const headerOffset = 75; 
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    } catch (error) {
+                        // console.error(`Error in querySelector for targetId: ${targetIdAttribute}`, error);
+                    }
+                } else if (targetIdAttribute === '#') {
+                    if (this.getAttribute('onclick') && 
+                        (this.getAttribute('onclick').includes('openInscripcionModal()') || this.getAttribute('onclick').includes('openArticuloModal'))) {
+                         e.preventDefault(); 
+                    }
+                }
+            });
+        });
+        
+        const sections = document.querySelectorAll("main section[id]");
+        const navListItems = document.querySelectorAll(".nav-links a");
+
+        function navHighlighter() {
+            let scrollY = window.pageYOffset;
+            let currentSectionId = "";
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 100; 
+                
+                if (scrollY >= sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    currentSectionId = current.getAttribute("id");
+                }
+            });
+
+            navListItems.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").substring(1) === currentSectionId) {
+                    link.classList.add("active");
+                }
+            });
+            if (!currentSectionId && scrollY < (sections.length > 0 ? sections[0].offsetTop - 100 : 0)) {
+                 const inicioLink = document.querySelector(".nav-links a[href='#inicio']");
+                 if (inicioLink) inicioLink.classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", navHighlighter);
+        document.addEventListener("DOMContentLoaded", navHighlighter); 
+
+
+        // --- Fade-in Animations on Scroll ---
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeInObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.dataset.delay || '0s';
+                    entry.target.style.animationDelay = delay;
+                    entry.target.classList.add('animated'); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => {
+            fadeInObserver.observe(el);
+        });
+        
+        // --- Copyright Year ---
+        const currentYearElement = document.getElementById('currentYear');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
+
+
+        // --- Contact Form Submission (Placeholder) ---
+        const contactFormEr = document.getElementById('contactFormEr');
+        if(contactFormEr) {
+            contactFormEr.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Mensaje enviado (simulación). ¡Gracias por contactarnos!');
+                this.reset();
+            });
+        }
+
+        // --- Modal para Artículos y Noticias (Funcionalidad Básica) ---
+        const articuloModal = document.getElementById('articuloModal');
+        const modalTitulo = document.getElementById('modalArticuloTitulo');
+        const modalCuerpo = document.getElementById('modalArticuloCuerpo');
+
+        const contenidoArticulos = {
+            'noticia_concentracion_tierra': { 
+                titulo: "Impacto de Concentración de Tierras y Acceso al Riego en Pobreza Rural Chilena",
+                cuerpo: "<p>Un nuevo estudio que analiza 253 municipios chilenos revela una preocupante conexión entre la alta concentración de la propiedad de la tierra, el acceso limitado al riego y el aumento de la pobreza rural. Los hallazgos sugieren que el actual régimen de propiedad en Chile facilita la acumulación irrestricta de tierras, lo que, combinado con la escasez de agua –agravada por el cambio climático–, genera vulnerabilidades territoriales significativas.</p><p>La investigación destaca que en municipios con bajo acceso a irrigación, la concentración de tierras tiene un impacto directo en el aumento de la probabilidad de pobreza. Esto se debe a que los pequeños productores y comunidades con menos recursos enfrentan mayores dificultades para acceder a la tierra y al agua, limitando su capacidad de adaptación y desarrollo. El estudio urge a una revisión de las políticas de tenencia y distribución de recursos productivos para fomentar un desarrollo más equitativo y resiliente en las zonas rurales de Chile.</p>"
+            },
+            'noticia_pndr_propiedad': { 
+                titulo: "Política de Desarrollo Rural Chilena: ¿Ignora la Concentración de la Tierra?",
+                cuerpo: "<p>Un análisis crítico de la nueva Política Nacional de Desarrollo Rural (PNDR) de Chile plantea interrogantes sobre su efectividad al no abordar directamente el persistente fenómeno de la concentración de la tierra. Según el estudio, la PNDR se enfoca en la competitividad territorial pero pasa por alto cómo la estructura de propiedad rural, caracterizada por su naturaleza individual y absoluta, influye en las dinámicas espaciales y socioeconómicas.</p><p>La investigación argumenta que esta omisión representa una contradicción inherente, ya que la alta concentración de tierras (con el 1% de las explotaciones más grandes controlando hasta el 70% de la tierra en algunas regiones agroforestales clave) limita la capacidad de la política para alcanzar sus objetivos de desarrollo equitativo. Se sugiere que, para una planificación rural efectiva, es crucial considerar cómo el marco legal de la propiedad media el acceso a recursos y configura el poder en los territorios rurales, especialmente en un contexto de creciente presión por el cambio climático y la seguridad alimentaria.</p>"
+            },
+            'articulo1_perspectivas': { 
+                titulo: "Desafíos de la Agricultura Familiar en el Siglo XXI",
+                cuerpo: "<p>Este es el contenido completo del artículo sobre los desafíos de la agricultura familiar...</p><p>Se detallan aspectos como la resiliencia, adaptación al cambio climático, y dinámicas de mercado que afectan a los pequeños productores.</p>"
+            },
+            'articulo2_perspectivas': { 
+                titulo: "El Rol de la Mujer en el Desarrollo Rural Sostenible",
+                cuerpo: "<p>Análisis profundo sobre la contribución esencial de las mujeres en el ámbito rural y las brechas de género que aún necesitan ser abordadas para un desarrollo equitativo y sostenible.</p>"
+            },
+            'articulo3_perspectivas': { 
+                titulo: "Innovación Tecnológica para la Pequeña Agricultura",
+                cuerpo: "<p>Exploración de cómo las nuevas tecnologías, desde apps móviles hasta drones y biotecnología, pueden ser herramientas clave para potenciar la productividad, eficiencia y sostenibilidad de los pequeños agricultores.</p>"
+            }
+        };
+
+        function openArticuloModal(articuloId) {
+            if (!articuloModal || !modalTitulo || !modalCuerpo) return; 
+            const contenido = contenidoArticulos[articuloId];
+            if (contenido) {
+                modalTitulo.textContent = contenido.titulo;
+                modalCuerpo.innerHTML = contenido.cuerpo;
+                articuloModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            } else {
+                console.error("Contenido no encontrado para el ID:", articuloId);
+            }
+        }
+
+        function closeArticuloModal() {
+            if (!articuloModal) return;
+            articuloModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // --- Modal para Inscripción ---
+        const inscripcionModal = document.getElementById('inscripcionModal');
+        const inscripcionFormEr = document.getElementById('inscripcionFormEr');
+        const fotoInputEr = document.getElementById('inscFotoEr');
+        const fotoPreviewEr = document.getElementById('fotoPreviewEr');
+        const fotoBase64InputEr = document.getElementById('inscFotoBase64Er');
+
+
+        function openInscripcionModal() {
+            if (!inscripcionModal) return;
+            inscripcionModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeInscripcionModal() {
+            if (!inscripcionModal) return;
+            inscripcionModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            if(inscripcionFormEr) inscripcionFormEr.reset(); // Limpiar formulario al cerrar
+            if(fotoPreviewEr) {
+                fotoPreviewEr.style.display = 'none'; // Ocultar vista previa
+                fotoPreviewEr.src = '#';
+            }
+            if(fotoBase64InputEr) fotoBase64InputEr.value = ''; // Limpiar campo oculto
+        }
+
+        if (fotoInputEr && fotoPreviewEr && fotoBase64InputEr) {
+            fotoInputEr.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        fotoPreviewEr.src = e.target.result;
+                        fotoPreviewEr.style.display = 'block';
+                        fotoBase64InputEr.value = e.target.result; // Guardar Base64
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    fotoPreviewEr.style.display = 'none';
+                    fotoPreviewEr.src = '#';
+                    fotoBase64InputEr.value = '';
+                    if (file) { // Si se seleccionó un archivo pero no es imagen
+                        alert('Por favor, seleccione un archivo de imagen válido.');
+                        fotoInputEr.value = ''; // Limpiar el input file
+                    }
+                }
+            });
+        }
+
+        if(inscripcionFormEr) {
+            inscripcionFormEr.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                // El campo 'fotoBase64' ya está en formData si se seleccionó una imagen
+                
+                let formOutput = "Datos del formulario de inscripción:\n";
+                for (let [key, value] of formData.entries()) {
+                    if (key === 'fotoBase64' && value) {
+                        formOutput += `${key}: (Imagen en Base64 - longitud: ${value.length})\n`;
+                    } else {
+                        formOutput += `${key}: ${value}\n`;
+                    }
+                }
+                console.log(formOutput); 
+                alert('Inscripción enviada (simulación). ¡Gracias!\nRevisa la consola para ver los datos (la imagen se muestra como una cadena Base64).');
+                
+                // Lógica para enviar a Google Apps Script (ejemplo conceptual)
+                // const scriptURL = 'URL_DE_TU_GOOGLE_APPS_SCRIPT';
+                // fetch(scriptURL, { method: 'POST', body: formData})
+                //   .then(response => console.log('Success!', response))
+                //   .catch(error => console.error('Error!', error.message));
+
+                this.reset(); // Limpia campos visibles
+                closeInscripcionModal(); // Cierra y limpia vista previa/campo oculto
+            });
+        }
+        
+        // Cerrar modales si se hace clic fuera del contenido
+        window.addEventListener('click', function(event) {
+            if (event.target == articuloModal) {
+                closeArticuloModal();
+            }
+            if (event.target == inscripcionModal) {
+                closeInscripcionModal();
+            }
+        });
+
+    </script>
+</body>
+</html>
