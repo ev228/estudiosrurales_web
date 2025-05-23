@@ -111,20 +111,21 @@
             height: 75px;
         }
 
-        .logo-container .logo-text {
+        .logo-container { 
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-image { 
+            height: 50px; 
+            width: auto;
+        }
+        .logo-text { 
             font-size: 1.9rem;
             font-weight: 700;
             color: var(--verde-principal); 
-            text-decoration: none;
-            display: flex;
-            align-items: center;
         }
-        .logo-container .logo-icon {
-            width: 35px;
-            height: 35px;
-            margin-right: 10px;
-            fill: var(--verde-principal); 
-        }
+
 
         .nav-links-container { 
             display: flex;
@@ -192,74 +193,145 @@
             margin-left: 15px; 
         }
 
-        .hero {
-            background: linear-gradient(rgba(50, 70, 30, 0.7), rgba(50, 70, 30, 0.6)), url('https://placehold.co/1920x1080/A98B72/F5EFE6?text=Paisaje+Rural+Sutil') no-repeat center center/cover;
-            color: var(--blanco);
-            height: 90vh;
+        /* --- Hero Section con Carrusel --- */
+        .hero-carousel-section {
+            padding: 0; 
+            margin-top: 75px; 
+            position: relative; 
+            height: 90vh; 
             min-height: 600px;
+            overflow: hidden; 
+        }
+
+        .hero-carousel-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1); 
+        }
+
+        .hero-slide {
+            min-width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-top: 75px; 
+            padding: 30px; 
+            position: relative;
+            color: var(--blanco);
+            background-size: cover;
+            background-position: center center;
+        }
+        .hero-slide::before { 
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(40, 50, 30, 0.65); 
+            z-index: 1;
         }
 
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .hero-slide-1 {
+            /* URL de placehold.co para color sólido sin texto, usando el mismo color para fondo y texto */
+            background-image: url('https://placehold.co/1920x1080/A98B72/A98B72.png'); 
+        }
+        .hero-slide-2 {
+            background-image: url('https://placehold.co/1920x1080/6A994E/6A994E.png'); /* Ejemplo verde */
+        }
+        .hero-slide-3 {
+            background-image: url('https://placehold.co/1920x1080/BC6C25/BC6C25.png'); /* Ejemplo tierra */
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
+
+        .hero-slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .hero-slide-content .badge {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.15);
+            color: var(--blanco);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+
+        .hero-slide-content h1 {
+            font-size: 3.2rem; 
             font-weight: 700;
             margin-bottom: 20px;
-            line-height: 1.2;
+            line-height: 1.25;
             letter-spacing: -1px;
-            font-family: 'Montserrat', sans-serif; 
         }
 
-        .hero-content p {
-            font-size: 1.25rem;
+        .hero-slide-content p {
+            font-size: 1.2rem;
             margin-bottom: 35px;
             font-family: 'Montserrat', sans-serif; 
             opacity: 0.95; 
             font-weight: 400; 
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .btn {
-            text-decoration: none;
-            padding: 14px 35px;
+        .hero-buttons .btn { margin: 5px 10px; } /* Añadido margen para que no se peguen si hay varios */
+
+
+        .carousel-controls-hero {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 12px;
+        }
+
+        .carousel-dot-hero {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .carousel-dot-hero.active {
+            background-color: var(--blanco);
+            transform: scale(1.2);
+        }
+
+        .carousel-arrow-hero {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.2);
+            color: var(--blanco);
+            border: none;
+            font-size: 2rem;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
             border-radius: var(--radio-bordes);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 1rem;
-            border: 2px solid transparent;
+            transition: background-color 0.3s ease;
         }
+        .carousel-arrow-hero:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        .carousel-arrow-hero.prev { left: 20px; }
+        .carousel-arrow-hero.next { right: 20px; }
 
-        .btn-primary {
-            background-color: var(--acento-tierra); 
-            color: var(--blanco);
-        }
-        .btn-primary:hover {
-            background-color: #A25C1F; 
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(188, 108, 37, 0.3);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--blanco);
-            border-color: var(--acento-tierra); 
-        }
-        .btn-secondary:hover {
-            background-color: var(--acento-tierra);
-            color: var(--blanco);
-            transform: translateY(-3px);
-        }
 
         #nosotros .nosotros-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr; 
             gap: 40px;
             align-items: center;
         }
@@ -267,11 +339,7 @@
             margin-bottom: 20px;
             text-align: justify;
         }
-        .nosotros-imagen img {
-            width: 100%;
-            border-radius: var(--radio-bordes);
-            box-shadow: var(--sombra-elevada);
-        }
+        
         .enfoque-item {
             margin-top: 30px;
             padding: 25px;
@@ -332,10 +400,7 @@
             text-decoration: underline;
         }
 
-        /* --- Sección Experiencia --- */
-        #experiencia {
-            /* background-color: var(--beige-claro); Ya se maneja con nth-child */
-        }
+        #experiencia { }
         .experiencia-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -648,20 +713,16 @@
             padding: 50px 0;
             text-align: center;
         }
-        .footer-logo .logo-text {
-            font-size: 1.8rem;
-            font-weight: 700;
+        .footer-logo .logo-image { 
+            height: 40px; 
+            width: auto;
+            margin-bottom: 10px;
+        }
+        .footer-logo .logo-text { 
+            font-size: 1.5rem;
+            font-weight: 600;
             color: var(--blanco);
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-         .footer-logo .logo-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            fill: var(--blanco);
         }
         .footer-links {
             list-style: none;
@@ -729,7 +790,7 @@
             overflow-y: auto;
         }
         .modal-er-content.inscripcion-modal-content {
-            max-width: 600px; /* Un poco más ancho para acomodar campos */
+            max-width: 600px; 
         }
 
         .close-er-modal {
@@ -758,7 +819,7 @@
             line-height: 1.8;
             color: var(--gris-texto-oscuro);
         }
-        .modal-er-content .form-group { margin-bottom: 15px; } /* Reducir margen para más campos */
+        .modal-er-content .form-group { margin-bottom: 15px; } 
         .modal-er-content .form-group label {
             font-size: 0.9rem;
             color: var(--verde-secundario);
@@ -783,11 +844,10 @@
         .modal-er-content .btn-submit-modal:hover {
             background-color: #A25C1F;
         }
-        /* Estilos para el input de archivo y la vista previa de la foto */
-        #inscFotoCarnetEr { /* ID actualizado para foto carnet */
+        #inscFotoCarnetEr { 
             padding: 10px; 
         }
-        #fotoCarnetPreviewEr { /* ID actualizado para foto carnet */
+        #fotoCarnetPreviewEr { 
             max-width: 100%;
             max-height: 200px; 
             margin-top: 10px;
@@ -813,8 +873,9 @@
         }
         
         @media (max-width: 992px) {
-            .hero-content h1 { font-size: 2.8rem; }
-            .hero-content p { font-size: 1.1rem; }
+            .hero-carousel-section { min-height: 500px; height: 80vh;}
+            .hero-slide-content h1 { font-size: 2.5rem; }
+            .hero-slide-content p { font-size: 1.1rem; }
             .section-header h2 { font-size: 2.4rem; }
             .contacto-wrapper { grid-template-columns: 1fr; }
 
@@ -866,17 +927,18 @@
             .menu-toggle { display: block; } 
 
 
-            .hero { height: auto; min-height: 450px; padding: 60px 0; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content p { font-size: 1rem; }
-            .btn { padding: 12px 25px; font-size: 0.9rem;}
+            .hero-carousel-section { min-height: 400px; height: 70vh;}
+            .hero-slide-content h1 { font-size: 2rem; }
+            .hero-slide-content p { font-size: 1rem; }
+            .hero-buttons .btn { padding: 12px 20px; font-size: 0.9rem; width: 80%; margin-bottom: 10px;}
+            .hero-buttons { display: flex; flex-direction: column; align-items: center;}
+
 
             section { padding: 60px 0; }
             .section-header h2 { font-size: 2rem; }
             .section-header p.subtitle { font-size: 1rem; }
             
             .nosotros-grid { grid-template-columns: 1fr; }
-            .nosotros-imagen { margin-top: 30px; }
 
             .proyectos-grid, .experiencia-grid { grid-template-columns: 1fr; }
              .modal-er-content.inscripcion-modal-content {
@@ -890,10 +952,9 @@
 
     <header class="main-header" id="mainHeader">
         <div class="container main-nav">
-            <a href="#inicio" class="logo-container">
-                <svg class="logo-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M25 2C12.318 2 2 12.318 2 25s10.318 23 23 23 23-10.318 23-23S37.682 2 25 2zm0 4c10.493 0 19 8.507 19 19s-8.507 19-19 19-19-8.507-19-19S14.507 6 25 6zm-2 8v10h-4V14h4zm6 0v10h-4V14h4zm-3 12c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-8 4l4 4 4-4h-8zM15 34h20v2H15v-2z"/></svg>
-                <span class="logo-text">Estudios Rurales</span>
-            </a>
+             <a href="#inicio" class="logo-container">
+                <img src="https://placehold.co/180x55/4A7729/F5EFE6?text=Estudios+Rurales&font=montserrat" alt="Logo Estudios Rurales" class="logo-image" onerror="this.alt='Logo Estudios Rurales'; this.src='https://placehold.co/180x55/4A7729/F5EFE6?text=Estudios+Rurales&font=montserrat';">
+                </a>
             <nav class="nav-container">
                 <div class="nav-links-container" id="navLinksContainer">
                     <ul class="nav-links" id="navLinks">
@@ -914,12 +975,45 @@
     </header>
 
     <main>
-        <section id="inicio" class="hero">
-            <div class="container hero-content fade-in">
-                <h1>Análisis Profundo para el Desarrollo Sostenible del Territorio</h1>
-                <p>En Estudios Rurales transformamos datos en conocimiento estratégico, impulsando decisiones informadas para el progreso de comunidades y organizaciones.</p>
-                <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
-                <a href="#contacto" class="btn btn-secondary" style="margin-left:15px;">Contáctanos</a>
+        <section id="inicio" class="hero-carousel-section">
+            <div class="hero-carousel-container">
+                <div class="hero-slide hero-slide-1">
+                    <div class="hero-slide-content fade-in">
+                        <h1>Análisis Profundo para el Desarrollo Sostenible del Territorio</h1>
+                        <p>En Estudios Rurales transformamos datos en conocimiento estratégico, impulsando decisiones informadas para el progreso de comunidades y organizaciones.</p>
+                        <div class="hero-buttons">
+                            <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+                            <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide hero-slide-2">
+                    <div class="hero-slide-content">
+                        <span class="badge">Convocatoria Abierta</span>
+                        <h1>Escuela de Formación Sindical - Región Metropolitana</h1>
+                        <p>Fortalece tus capacidades de liderazgo y negociación. Un programa innovador con enfoque en transparencia y perspectiva de género.</p>
+                        <div class="hero-buttons">
+                             <a href="#" class="btn btn-primary" onclick="openInscripcionModal(event)">Inscríbete Aquí</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slide hero-slide-3">
+                    <div class="hero-slide-content">
+                        <span class="badge">Próximamente</span>
+                        <h1>Escuela de Formación Sindical - Región de la Araucanía</h1>
+                        <p>Prepárate para una formación integral adaptada a los desafíos y oportunidades del contexto sindical en la Araucanía.</p>
+                         <div class="hero-buttons">
+                            <a href="#" class="btn btn-primary" onclick="openInscripcionModal(event)">Pre-Inscríbete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-arrow-hero prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="carousel-arrow-hero next" onclick="plusSlides(1)">&#10095;</button>
+            <div class="carousel-controls-hero">
+                <span class="carousel-dot-hero active" onclick="currentHeroSlide(1)"></span>
+                <span class="carousel-dot-hero" onclick="currentHeroSlide(2)"></span>
+                <span class="carousel-dot-hero" onclick="currentHeroSlide(3)"></span>
             </div>
         </section>
 
@@ -937,9 +1031,6 @@
                             <h4>Nuestro Enfoque Diferencial</h4>
                             <p>Basamos nuestro trabajo en la participación activa, la co-construcción de soluciones y el uso de metodologías mixtas que integran lo cuantitativo y cualitativo para una comprensión holística.</p>
                         </div>
-                    </div>
-                    <div class="nosotros-imagen fade-in" data-delay="0.4s">
-                        <img src="https://placehold.co/600x450/A98B72/FFFFFF?text=Equipo+Estudios+Rurales+en+Campo" alt="Imagen de equipo Estudios Rurales" onerror="this.src='https://placehold.co/600x450/e0e0e0/777777?text=Imagen+No+Disponible';">
                     </div>
                 </div>
             </div>
@@ -1298,8 +1389,7 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-logo">
-                 <svg class="logo-icon" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><path d="M25 2C12.318 2 2 12.318 2 25s10.318 23 23 23 23-10.318 23-23S37.682 2 25 2zm0 4c10.493 0 19 8.507 19 19s-8.507 19-19 19-19-8.507-19-19S14.507 6 25 6zm-2 8v10h-4V14h4zm6 0v10h-4V14h4zm-3 12c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-8 4l4 4 4-4h-8zM15 34h20v2H15v-2z"/></svg>
-                <span class="logo-text">Estudios Rurales</span>
+                 <img src="https://placehold.co/130x40/FFFFFF/4A7729?text=Estudios+Rurales&font=montserrat" alt="Logo Estudios Rurales en Footer" class="logo-image" onerror="this.alt='Logo Estudios Rurales'; this.src='https://placehold.co/130x40/FFFFFF/4A7729?text=Estudios+Rurales&font=montserrat';">
             </div>
             <ul class="footer-links">
                 <li><a href="#nosotros">Nosotros</a></li>
@@ -1377,8 +1467,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inscFotoCarnetEr">Foto del Carnet (Frontal)</label>
-                    <input type="file" id="inscFotoCarnetEr" name="fotoCarnet" class="form-control" accept="image/*" capture="camera">
-                    <img id="fotoCarnetPreviewEr" src="#" alt="Vista previa del carnet" style="max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: var(--radio-bordes); border: 1px solid var(--gris-azulado-muy-claro); object-fit: contain; display: none;">
+                    <input type="file" id="inscFotoCarnetEr" name="fotoCarnetFile" class="form-control" accept="image/*" capture="camera"> <img id="fotoCarnetPreviewEr" src="#" alt="Vista previa del carnet" style="max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: var(--radio-bordes); border: 1px solid var(--gris-azulado-muy-claro); object-fit: contain; display: none;">
                     <input type="hidden" id="inscFotoCarnetBase64Er" name="fotoCarnetBase64">
                 </div>
                 <button type="submit" class="btn btn-submit-modal">Enviar Inscripción</button>
@@ -1409,7 +1498,7 @@
             });
             navLinksContainer.querySelectorAll('a').forEach(link => { 
                 link.addEventListener('click', (event) => { 
-                    const isModalButton = link.getAttribute('onclick') && link.getAttribute('onclick').includes('openInscripcionModal');
+                    const isModalButton = link.getAttribute('onclick') && (link.getAttribute('onclick').includes('openInscripcionModal') || link.getAttribute('onclick').includes('openArticuloModal') );
                     if (!isModalButton && navLinksContainer.classList.contains('active')) {
                         navLinksContainer.classList.remove('active');
                     }
@@ -1558,7 +1647,7 @@
             if (!articuloModal) return;
             articuloModal.style.display = 'none';
             document.body.style.overflow = 'auto';
-        }; // <-- Punto y coma añadido aquí
+        };
         
         // --- Modal para Inscripción ---
         const inscripcionModal = document.getElementById('inscripcionModal');
@@ -1620,7 +1709,6 @@
 
                 const formData = new FormData(this);
                 
-                // ***** REEMPLAZA ESTA LÍNEA CON LA URL DE TU GOOGLE APPS SCRIPT *****
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbytOdZlMpNNi_8pb9ioBRAD-FbcXjQQAjyzJFK-V39IKJZN4UUyrYSWT10XT85snQo/exec'; 
 
                 fetch(scriptURL, { 
@@ -1658,6 +1746,48 @@
                 closeInscripcionModal();
             }
         });
+
+        // --- Hero Carousel ---
+        let slideIndexHero = 1;
+        const slidesHero = document.querySelectorAll(".hero-slide");
+        const dotsHero = document.querySelectorAll(".carousel-dot-hero");
+        const heroCarouselContainer = document.querySelector(".hero-carousel-container");
+
+        function showHeroSlide(n) {
+            if (!heroCarouselContainer || !slidesHero.length || !dotsHero.length) return;
+
+            if (n > slidesHero.length) { slideIndexHero = 1 }
+            if (n < 1) { slideIndexHero = slidesHero.length }
+
+            heroCarouselContainer.style.transform = `translateX(-${(slideIndexHero - 1) * 100}%)`;
+
+            dotsHero.forEach(dot => dot.classList.remove("active"));
+            if (dotsHero[slideIndexHero - 1]) { 
+                 dotsHero[slideIndexHero - 1].classList.add("active");
+            }
+
+            slidesHero.forEach(slide => slide.querySelector('.hero-slide-content').classList.remove('fade-in', 'animated'));
+            if (slidesHero[slideIndexHero - 1]) { 
+                const activeSlideContent = slidesHero[slideIndexHero - 1].querySelector('.hero-slide-content');
+                if (activeSlideContent) {
+                    activeSlideContent.classList.add('fade-in');
+                    void activeSlideContent.offsetWidth; 
+                    activeSlideContent.classList.add('animated');
+                }
+            }
+        }
+
+        function plusSlides(n) {
+            showHeroSlide(slideIndexHero += n);
+        }
+
+        function currentHeroSlide(n) {
+            showHeroSlide(slideIndexHero = n);
+        }
+        
+        if (slidesHero.length > 0) {
+            showHeroSlide(slideIndexHero);
+        }
 
     </script>
 </body>
