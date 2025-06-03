@@ -231,14 +231,13 @@
         }
 
         .hero-slide-1 {
-            /* URL de placehold.co para color sólido sin texto, usando el mismo color para fondo y texto */
             background-image: url('https://placehold.co/1920x1080/A98B72/A98B72.png'); 
         }
         .hero-slide-2 {
-            background-image: url('https://placehold.co/1920x1080/6A994E/6A994E.png'); /* Ejemplo verde */
+            background-image: url('https://placehold.co/1920x1080/6A994E/6A994E.png'); 
         }
         .hero-slide-3 {
-            background-image: url('https://placehold.co/1920x1080/BC6C25/BC6C25.png'); /* Ejemplo tierra */
+            background-image: url('https://placehold.co/1920x1080/BC6C25/BC6C25.png'); 
         }
 
 
@@ -281,7 +280,7 @@
             margin-right: auto;
         }
 
-        .hero-buttons .btn { margin: 5px 10px; } /* Añadido margen para que no se peguen si hay varios */
+        .hero-buttons .btn { margin: 5px 10px; } 
 
 
         .carousel-controls-hero {
@@ -1362,7 +1361,7 @@
                             <h4>Nueva Convocatoria: Escuela de Formación Sindical Nivel Inicial en La Araucanía</h4>
                             <p class="noticia-meta-er"><span class="fecha">02 Junio, 2025</span> | Por Estudios Rurales</p>
                             <p class="noticia-extracto-er">Estudios Rurales abre inscripciones para su Escuela de Formación Sindical en Temuco, enfocada en nuevos líderes y relaciones laborales colaborativas. Programa gratuito financiado por la Subsecretaría del Trabajo.</p>
-                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_formacion_sindical_araucania')">Leer Más &rarr;</a>
+                            <a href="noticia_formacion_sindical_araucania.html" class="btn-detalle">Leer Más &rarr;</a>
                         </div>
                     </article>
                     
@@ -1375,7 +1374,7 @@
                             <h4>Escuela de Formación Sindical: Estudios Rurales abre convocatoria para la Región Metropolitana</h4>
                             <p class="noticia-meta-er"><span class="fecha">03 Junio, 2025</span> | Por Estudios Rurales</p>
                             <p class="noticia-extracto-er">SANTIAGO - Estudios Rurales anuncia la apertura de inscripciones para la Escuela de Formación Sindical – Nivel Inicial 2025 en la Región Metropolitana, dirigida a formar nuevos líderes sindicales.</p>
-                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_formacion_sindical_rm')">Leer Más &rarr;</a>
+                            <a href="noticia_formacion_sindical_rm.html" class="btn-detalle">Leer Más &rarr;</a>
                         </div>
                     </article>
 
@@ -1394,11 +1393,11 @@
                         <h3>Información de Contacto</h3>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <p>2 oriente. Talca.<br>Chile</p> <!-- Dirección Actualizada -->
+                            <p>2 oriente. Talca.<br>Chile</p> 
                         </div>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                            <p>+56 9 4186 2249</p> <!-- Teléfono Actualizado -->
+                            <p>+56 9 4186 2249</p> 
                         </div>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -1455,12 +1454,13 @@
         </div>
     </footer>
     
+    <!-- Modal para Perspectivas y Análisis (se mantiene) -->
     <div id="articuloModal" class="modal-er">
         <div class="modal-er-content">
             <span class="close-er-modal" onclick="closeArticuloModal()">&times;</span>
             <h3 id="modalArticuloTitulo">Título del Contenido</h3>
             <div id="modalArticuloCuerpo" class="modal-er-body">
-                <!-- Contenido del artículo se carga aquí -->
+                <!-- Contenido del artículo de Perspectivas se carga aquí -->
             </div>
         </div>
     </div>
@@ -1577,7 +1577,7 @@
                         // console.error(`Error in querySelector for targetId: ${targetIdAttribute}`, error);
                     }
                 } else if (targetIdAttribute === '#') {
-                     if (this.hasAttribute('onclick')) { // Prevent default for buttons using href="#" but have onclick
+                     if (this.hasAttribute('onclick')) { 
                         e.preventDefault();
                     }
                 }
@@ -1644,138 +1644,18 @@
         if(contactFormEr) {
             contactFormEr.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // Simulación de envío
                 alert('Mensaje enviado (simulación). ¡Gracias por contactarnos!');
                 this.reset();
             });
         }
 
-        // --- Modal para Artículos y Noticias (Funcionalidad Básica) ---
+        // --- Modal para Artículos de Perspectivas y Análisis ---
         const articuloModal = document.getElementById('articuloModal');
         const modalTitulo = document.getElementById('modalArticuloTitulo');
         const modalCuerpo = document.getElementById('modalArticuloCuerpo');
 
-        const contenidoArticulos = {
-            'noticia_formacion_sindical_araucania': {
-                titulo: "Abierta Convocatoria: Escuela de Formación Sindical – Nivel Inicial (Región de La Araucanía)",
-                cuerpo: `<h4>Escuela de Formación Sindical – Nivel Inicial (Región de La Araucanía)</h4>
-                        <p><strong>TEMUCO, 2 de Junio de 2025.</strong> — Estudios Rurales abrió la convocatoria de su Escuela de Formación Sindical – Nivel Inicial, programa adjudicado mediante licitación pública del Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025 de la Subsecretaría del Trabajo.</p>
-                        <p>La iniciativa —dirigida a trabajadoras y trabajadores con o sin contrato de trabajo— busca formar nuevos dirigentes sindicales capaces de negociar condiciones justas, dialogar con empleadores y promover relaciones laborales colaborativas basadas en derechos humanos.</p>
-                        <h5>Calendario y metodología</h5>
-                        <p>El curso tiene un total de <strong>68 horas pedagógicas</strong> distribuidas en <strong>cinco semanas y media:</strong></p>
-                        <table class="tabla-info-modal">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Modalidad</th>
-                                    <th>Detalle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Inicio: miércoles 12 de junio</td>
-                                    <td>Online (vespertino)</td>
-                                    <td>Clases en vivo de martes a viernes (plataforma Zoom)</td>
-                                </tr>
-                                <tr>
-                                    <td>Entre semanas</td>
-                                    <td>Online</td>
-                                    <td>Clases en vivo teóricas y prácticas</td>
-                                </tr>
-                                <tr>
-                                    <td>Sábados seleccionados</td>
-                                    <td>Presencial</td>
-                                    <td>Hotel Nicolás, General Mackenna 420, Temuco.</td>
-                                </tr>
-                                <tr>
-                                    <td>Cierre: jueves 24 de julio</td>
-                                    <td>Presencial</td>
-                                    <td>Evaluación final y entrega de certificados</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>Contenidos clave</h5>
-                        <ul>
-                            <li>Derechos laborales y enfoque de derechos humanos.</li>
-                            <li>Técnicas de negociación colectiva y diálogo social.</li>
-                            <li>Comunicación estratégica y liderazgo sindical con perspectiva de género.</li>
-                        </ul>
-                        <h5>Beneficios para los participantes</h5>
-                        <p>El programa es <strong>gratuito</strong>; incluye materiales de estudio, <strong>subsidios de transporte y alimentación</strong>, acceso a las grabaciones de cada sesión y certificación oficial.</p>
-                        <h5>Requisitos de postulación</h5>
-                        <ul>
-                            <li>Tener 18 años o más.</li>
-                            <li>Poseer cédula chilena vigente (nacional o extranjera).</li>
-                            <li>Vivir y/o trabajar en la Región de La Araucanía.</li>
-                            <li>No haber cursado la Escuela Nivel Inicial en 2023 o 2024.</li>
-                        </ul>
-                        <h5>¿Por qué inscribirse?</h5>
-                        <p>“Necesitamos líderes sindicales preparados para enfrentar la informalidad, las brechas de género y la precariedad laboral; esta escuela entrega las herramientas para lograrlo”, destaca el equipo coordinador de Estudios Rurales.</p>
-                        <h5>¿Cómo inscribirse?</h5>
-                        <p>Completa el formulario y asegura tu cupo (plazas limitadas): <a href="#" onclick="closeArticuloModal(); openInscripcionModal(event); return false;" class="btn-link-modal">IR AL FORMULARIO</a></p>
-                        <p>Para consultas, comunicarse con Jorge Paredes, al <strong>+56 9 4094 2318</strong></p>
-                        <hr>
-                        <p style="font-size:0.8em; text-align:center;"><em>Subsecretaría del Trabajo · Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025.</em></p>`
-            },
-            'noticia_formacion_sindical_rm': {
-                titulo: "Escuela de Formación Sindical: Estudios Rurales abre convocatoria para la Región Metropolitana",
-                cuerpo: `<h4>Escuela de Formación Sindical – Nivel Inicial (Región Metropolitana)</h4>
-                        <p><strong>SANTIAGO, 3 de junio de 2025.</strong> — Estudios Rurales anuncia la apertura de inscripciones para la Escuela de Formación Sindical – Nivel Inicial 2025 que se realizará en la Región Metropolitana, iniciativa financiada por el Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025 de la Subsecretaría del Trabajo.</p>
-                        <p>Dirigida a trabajadoras y trabajadores, el programa está concebido para formar nuevos líderes sindicales capaces de negociar, dialogar y resguardar derechos en contextos laborales cada vez más exigentes.</p>
-                        <h5>Duración y formato</h5>
-                        <p>La escuela contempla <strong>68 horas pedagógicas</strong> distribuidas en <strong>cinco semanas y media</strong>, que se realizarán en modalidad mixta:</p>
-                        <table class="tabla-info-modal">
-                            <thead>
-                                <tr>
-                                    <th>Calendario</th>
-                                    <th>Modalidad</th>
-                                    <th>Detalle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Inicio: 9 de junio</td>
-                                    <td>Ceremonia de inauguración</td>
-                                    <td>Bienvenida, entrega de materiales y lineamientos de la Escuela Sindical Nivel Inicial</td>
-                                </tr>
-                                <tr>
-                                    <td>Miércoles y viernes</td>
-                                    <td>Clases online</td>
-                                    <td>Clases en horario vespertino</td>
-                                </tr>
-                                <tr>
-                                    <td>Sábados</td>
-                                    <td>Presencial</td>
-                                    <td>Aula de la Caja de Compensación Los Andes, Santiago Centro</td>
-                                </tr>
-                                <tr>
-                                    <td>Cierre: 4 de agosto</td>
-                                    <td>Ceremonia de certificación presencial</td>
-                                    <td>Reflexiones finales y entrega de certificados</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>Contenidos principales</h5>
-                        <ul>
-                            <li>Módulo 1: Desafíos del liderazgo sindical en el siglo XXI</li>
-                            <li>Módulo 2: Desarrollo de habilidades de comunicación, diálogo social y negociación</li>
-                            <li>Módulo 3: Vinculación con la sociedad</li>
-                        </ul>
-                        <h5>Beneficios sin costo</h5>
-                        <p>El proyecto es <strong>100 % gratuito</strong>: incluye materiales de estudio, <strong>subsidios de transporte y alimentación</strong>. Acceso a repositorio con grabaciones y material académico de cada clase. Además reconocimiento especial a quienes cumplan con el requisito de asistencia y evaluación final de la Escuela Nivel Inicial.</p>
-                        <h5>Requisitos</h5>
-                        <ul>
-                            <li>Ser mayor de 18 años</li>
-                            <li>Contar con cédula chilena vigente (chileno/a o extranjero/a)</li>
-                            <li>Vivir y/o trabajar en la Región Metropolitana</li>
-                            <li>No haber cursado alguna Escuela Nivel Inicial en 2023-2024</li>
-                        </ul>
-                        <h5>Cómo postular</h5>
-                        <p>Las inscripciones ya están disponibles en <a href="#" onclick="closeArticuloModal(); openInscripcionModal(event); return false;" class="btn-link-modal">estudiosrurales.com</a> hasta agotar cupos. El formulario en línea solicita datos personales, así como actividad laboral y sindical.</p>
-                        <p>“La dispersión de microempresas y la baja sindicalización en la RM requieren dirigentes mejor preparados; nuestra escuela entrega las competencias para asumir ese desafío”, señala el equipo coordinador de Estudios Rurales.</p>
-                        <hr>
-                        <p style="font-size:0.8em; text-align:center;"><em>Financiado por Subsecretaría del Trabajo, Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025.</em></p>`
-            },
+        // Contenido solo para la sección "Perspectivas y Análisis" que usa modal
+        const contenidoArticulosPerspectivas = {
             'noticia_concentracion_tierra': { 
                 titulo: "Impacto de Concentración de Tierras y Acceso al Riego en Pobreza Rural Chilena",
                 cuerpo: "<p>Un nuevo estudio que analiza 253 municipios chilenos revela una preocupante conexión entre la alta concentración de la propiedad de la tierra, el acceso limitado al riego y el aumento de la pobreza rural. Los hallazgos sugieren que el actual régimen de propiedad en Chile facilita la acumulación irrestricta de tierras, lo que, combinado con la escasez de agua –agravada por el cambio climático–, genera vulnerabilidades territoriales significativas.</p><p>La investigación destaca que en municipios con bajo acceso a irrigación, la concentración de tierras tiene un impacto directo en el aumento de la probabilidad de pobreza. Esto se debe a que los pequeños productores y comunidades con menos recursos enfrentan mayores dificultades para acceder a la tierra y al agua, limitando su capacidad de adaptación y desarrollo. El estudio urge a una revisión de las políticas de tenencia y distribución de recursos productivos para fomentar un desarrollo más equitativo y resiliente en las zonas rurales de Chile.</p>"
@@ -1786,16 +1666,16 @@
             }
         };
 
-        function openArticuloModal(articuloId) {
+        function openArticuloModal(articuloId) { // Esta función ahora solo para Perspectivas
             if (!articuloModal || !modalTitulo || !modalCuerpo) return; 
-            const contenido = contenidoArticulos[articuloId];
+            const contenido = contenidoArticulosPerspectivas[articuloId]; // Usar el objeto correcto
             if (contenido) {
                 modalTitulo.textContent = contenido.titulo;
                 modalCuerpo.innerHTML = contenido.cuerpo;
                 articuloModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; 
             } else {
-                console.error("Contenido no encontrado para el ID:", articuloId);
+                console.error("Contenido no encontrado para el ID (Perspectivas):", articuloId);
                 modalTitulo.textContent = "Contenido no disponible";
                 modalCuerpo.innerHTML = "<p>Lamentamos las molestias, el contenido solicitado no está disponible en este momento.</p>";
                 articuloModal.style.display = 'flex';
@@ -1803,13 +1683,13 @@
             }
         }
 
-        function closeArticuloModal() {
+        function closeArticuloModal() { // Esta función ahora solo para Perspectivas
             if (!articuloModal) return;
             articuloModal.style.display = 'none';
             document.body.style.overflow = 'auto'; 
         };
         
-        // --- Modal para Inscripción ---
+        // --- Modal para Inscripción (se mantiene) ---
         const inscripcionModal = document.getElementById('inscripcionModal');
         const inscripcionFormEr = document.getElementById('inscripcionFormEr');
         const fotoCarnetInputEr = document.getElementById('inscFotoCarnetEr'); 
@@ -1899,10 +1779,10 @@
         
         // Cerrar modales si se hace clic fuera del contenido
         window.addEventListener('click', function(event) {
-            if (event.target == articuloModal) {
+            if (event.target == articuloModal) { // Modal de Perspectivas
                 closeArticuloModal();
             }
-            if (event.target == inscripcionModal) {
+            if (event.target == inscripcionModal) { // Modal de Inscripción
                 closeInscripcionModal();
             }
         });
@@ -1952,4 +1832,5 @@
     </script>
 </body>
 </html>
+
 
