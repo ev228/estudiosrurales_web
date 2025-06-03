@@ -701,6 +701,10 @@
             color: var(--blanco);
             padding: 14px 30px;
             border: none;
+            border-radius: var(--radio-bordes); 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
         }
         .btn-submit:hover {
             background-color: var(--verde-secundario); 
@@ -819,6 +823,49 @@
             line-height: 1.8;
             color: var(--gris-texto-oscuro);
         }
+        .modal-er-body h5 { 
+            font-size: 1.2rem;
+            color: var(--verde-secundario);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-er-body ul { 
+            list-style-position: inside;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+        .modal-er-body ul li {
+            margin-bottom: 8px;
+        }
+        .tabla-info-modal { 
+            width: 100%; 
+            margin-bottom: 20px; 
+            border-collapse: collapse; 
+            font-size: 0.9rem; 
+        }
+        .tabla-info-modal th, .tabla-info-modal td { 
+            border: 1px solid var(--gris-azulado-muy-claro); 
+            padding: 8px 10px; 
+            text-align: left; 
+        }
+        .tabla-info-modal th { 
+            background-color: var(--beige-claro); 
+            font-weight: 600; 
+            color: var(--verde-principal); 
+        }
+        .btn-link-modal { 
+            color: var(--acento-tierra);
+            font-weight: bold;
+            text-decoration: none; 
+            padding: 5px 0;
+            border-bottom: 2px solid transparent; 
+            transition: border-color 0.3s ease;
+        }
+        .btn-link-modal:hover {
+            border-bottom-color: var(--acento-tierra);
+        }
+
+
         .modal-er-content .form-group { margin-bottom: 15px; } 
         .modal-er-content .form-group label {
             font-size: 0.9rem;
@@ -840,9 +887,15 @@
             padding: 12px;
             font-size: 1rem;
             margin-top: 10px;
+            border: none; 
+            border-radius: var(--radio-bordes); 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
         }
         .modal-er-content .btn-submit-modal:hover {
             background-color: #A25C1F;
+            transform: translateY(-2px); 
         }
         #inscFotoCarnetEr { 
             padding: 10px; 
@@ -1269,7 +1322,7 @@
                 <div class="perspectivas-grid">
                      <article class="articulo-card fade-in" data-delay="0.1s">
                         <div class="articulo-imagen">
-                            <img src="https://placehold.co/400x250/4A7729/FFFFFF?text=Concentración+Tierras+Chile" alt="Concentración de tierras y pobreza rural en Chile" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                            <img src="https://placehold.co/400x250/4A7729/FFFFFF?text=Concentración+Tierras+Chile" alt="[Imagen de la Concentración de tierras y pobreza rural en Chile]" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
                         </div>
                         <div class="articulo-contenido">
                             <h4>Estudio Revela Impacto de Concentración de Tierras en Pobreza Rural Chilena</h4>
@@ -1280,7 +1333,7 @@
                     </article>
                     <article class="articulo-card fade-in" data-delay="0.2s">
                         <div class="articulo-imagen">
-                            <img src="https://placehold.co/400x250/BC6C25/FFFFFF?text=Política+Desarrollo+Rural" alt="Política de Desarrollo Rural y propiedad" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                            <img src="https://placehold.co/400x250/BC6C25/FFFFFF?text=Política+Desarrollo+Rural" alt="[Imagen de la Política de Desarrollo Rural y propiedad]" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
                         </div>
                         <div class="articulo-contenido">
                             <h4>Análisis Crítico: ¿Considera la Política de Desarrollo Rural la Realidad de la Tenencia de Tierra?</h4>
@@ -1300,39 +1353,32 @@
                     <p class="subtitle">Manténgase informado sobre nuestras actividades recientes, lanzamientos de programas y contribuciones al debate sobre el desarrollo rural.</p>
                 </div>
                 <div class="noticias-grid-er">
+                    <!-- Noticia Araucanía -->
                     <article class="noticia-card-er fade-in" data-delay="0.1s">
                         <div class="noticia-imagen-er">
-                            <img src="https://placehold.co/400x250/A98B72/FFFFFF?text=Análisis+Agrícola" alt="Imagen Artículo 1" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                            <img src="https://placehold.co/400x250/6A994E/FFFFFF?text=Formación+Sindical+Araucanía" alt="[Imagen de la Escuela de Formación Sindical Araucanía]" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
                         </div>
                         <div class="noticia-contenido-er">
-                            <h4>Desafíos de la Agricultura Familiar en el Siglo XXI</h4>
-                            <p class="noticia-meta-er"><span class="fecha">15 Mayo, 2025</span> | Por Equipo Estudios Rurales</p>
-                            <p class="noticia-extracto-er">Un análisis sobre la resiliencia y adaptación de la agricultura familiar frente al cambio climático y las dinámicas de mercado.</p>
-                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo1_perspectivas')">Leer Más &rarr;</a>
+                            <h4>Nueva Convocatoria: Escuela de Formación Sindical Nivel Inicial en La Araucanía</h4>
+                            <p class="noticia-meta-er"><span class="fecha">02 Junio, 2025</span> | Por Estudios Rurales</p>
+                            <p class="noticia-extracto-er">Estudios Rurales abre inscripciones para su Escuela de Formación Sindical en Temuco, enfocada en nuevos líderes y relaciones laborales colaborativas. Programa gratuito financiado por la Subsecretaría del Trabajo.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_formacion_sindical_araucania')">Leer Más &rarr;</a>
                         </div>
                     </article>
+                    
+                    <!-- Nueva Noticia Región Metropolitana -->
                     <article class="noticia-card-er fade-in" data-delay="0.2s">
                         <div class="noticia-imagen-er">
-                            <img src="https://placehold.co/400x250/6A994E/FFFFFF?text=Desarrollo+Comunitario" alt="Imagen Artículo 2" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
+                            <img src="https://placehold.co/400x250/4A7729/FFFFFF?text=Formación+Sindical+RM" alt="[Imagen de la Escuela de Formación Sindical Región Metropolitana]" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
                         </div>
                         <div class="noticia-contenido-er">
-                            <h4>El Rol de la Mujer en el Desarrollo Rural Sostenible</h4>
-                            <p class="noticia-meta-er"><span class="fecha">02 Mayo, 2025</span> | Por Dra. Elena Valdés</p>
-                            <p class="noticia-extracto-er">Visibilizando la contribución fundamental de las mujeres rurales y las brechas de género persistentes.</p>
-                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo2_perspectivas')">Leer Más &rarr;</a>
+                            <h4>Escuela de Formación Sindical: Estudios Rurales abre convocatoria para la Región Metropolitana</h4>
+                            <p class="noticia-meta-er"><span class="fecha">03 Junio, 2025</span> | Por Estudios Rurales</p>
+                            <p class="noticia-extracto-er">SANTIAGO - Estudios Rurales anuncia la apertura de inscripciones para la Escuela de Formación Sindical – Nivel Inicial 2025 en la Región Metropolitana, dirigida a formar nuevos líderes sindicales.</p>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_formacion_sindical_rm')">Leer Más &rarr;</a>
                         </div>
                     </article>
-                    <article class="noticia-card-er fade-in" data-delay="0.3s">
-                        <div class="noticia-imagen-er">
-                            <img src="https://placehold.co/400x250/BC6C25/FFFFFF?text=Innovación+Rural" alt="Imagen Artículo 3" onerror="this.src='https://placehold.co/400x250/e0e0e0/777777?text=Imagen';">
-                        </div>
-                        <div class="noticia-contenido-er">
-                            <h4>Innovación Tecnológica para la Pequeña Agricultura</h4>
-                            <p class="noticia-meta-er"><span class="fecha">20 Abril, 2025</span> | Por Mg. Javier Torres</p>
-                            <p class="noticia-extracto-er">Explorando cómo las nuevas tecnologías pueden potenciar la productividad y sostenibilidad de los pequeños productores.</p>
-                            <a href="#" class="btn-detalle" onclick="openArticuloModal('articulo3_perspectivas')">Leer Más &rarr;</a>
-                        </div>
-                    </article>
+
                 </div>
             </div>
         </section>
@@ -1348,11 +1394,11 @@
                         <h3>Información de Contacto</h3>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <p>Av. Principal 123, Oficina 405<br>Ciudad Capital, País</p>
+                            <p>2 oriente. Talca.<br>Chile</p> <!-- Dirección Actualizada -->
                         </div>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                            <p>+56 2 2345 6789<br>+56 9 8765 4321</p>
+                            <p>+56 9 4186 2249</p> <!-- Teléfono Actualizado -->
                         </div>
                         <div class="info-item">
                             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -1414,7 +1460,8 @@
             <span class="close-er-modal" onclick="closeArticuloModal()">&times;</span>
             <h3 id="modalArticuloTitulo">Título del Contenido</h3>
             <div id="modalArticuloCuerpo" class="modal-er-body">
-                </div>
+                <!-- Contenido del artículo se carga aquí -->
+            </div>
         </div>
     </div>
 
@@ -1530,7 +1577,7 @@
                         // console.error(`Error in querySelector for targetId: ${targetIdAttribute}`, error);
                     }
                 } else if (targetIdAttribute === '#') {
-                     if (this.hasAttribute('onclick')) {
+                     if (this.hasAttribute('onclick')) { // Prevent default for buttons using href="#" but have onclick
                         e.preventDefault();
                     }
                 }
@@ -1597,6 +1644,7 @@
         if(contactFormEr) {
             contactFormEr.addEventListener('submit', function(e) {
                 e.preventDefault();
+                // Simulación de envío
                 alert('Mensaje enviado (simulación). ¡Gracias por contactarnos!');
                 this.reset();
             });
@@ -1608,6 +1656,126 @@
         const modalCuerpo = document.getElementById('modalArticuloCuerpo');
 
         const contenidoArticulos = {
+            'noticia_formacion_sindical_araucania': {
+                titulo: "Abierta Convocatoria: Escuela de Formación Sindical – Nivel Inicial (Región de La Araucanía)",
+                cuerpo: `<h4>Escuela de Formación Sindical – Nivel Inicial (Región de La Araucanía)</h4>
+                        <p><strong>TEMUCO, 2 de Junio de 2025.</strong> — Estudios Rurales abrió la convocatoria de su Escuela de Formación Sindical – Nivel Inicial, programa adjudicado mediante licitación pública del Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025 de la Subsecretaría del Trabajo.</p>
+                        <p>La iniciativa —dirigida a trabajadoras y trabajadores con o sin contrato de trabajo— busca formar nuevos dirigentes sindicales capaces de negociar condiciones justas, dialogar con empleadores y promover relaciones laborales colaborativas basadas en derechos humanos.</p>
+                        <h5>Calendario y metodología</h5>
+                        <p>El curso tiene un total de <strong>68 horas pedagógicas</strong> distribuidas en <strong>cinco semanas y media:</strong></p>
+                        <table class="tabla-info-modal">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Modalidad</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Inicio: miércoles 12 de junio</td>
+                                    <td>Online (vespertino)</td>
+                                    <td>Clases en vivo de martes a viernes (plataforma Zoom)</td>
+                                </tr>
+                                <tr>
+                                    <td>Entre semanas</td>
+                                    <td>Online</td>
+                                    <td>Clases en vivo teóricas y prácticas</td>
+                                </tr>
+                                <tr>
+                                    <td>Sábados seleccionados</td>
+                                    <td>Presencial</td>
+                                    <td>Hotel Nicolás, General Mackenna 420, Temuco.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cierre: jueves 24 de julio</td>
+                                    <td>Presencial</td>
+                                    <td>Evaluación final y entrega de certificados</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5>Contenidos clave</h5>
+                        <ul>
+                            <li>Derechos laborales y enfoque de derechos humanos.</li>
+                            <li>Técnicas de negociación colectiva y diálogo social.</li>
+                            <li>Comunicación estratégica y liderazgo sindical con perspectiva de género.</li>
+                        </ul>
+                        <h5>Beneficios para los participantes</h5>
+                        <p>El programa es <strong>gratuito</strong>; incluye materiales de estudio, <strong>subsidios de transporte y alimentación</strong>, acceso a las grabaciones de cada sesión y certificación oficial.</p>
+                        <h5>Requisitos de postulación</h5>
+                        <ul>
+                            <li>Tener 18 años o más.</li>
+                            <li>Poseer cédula chilena vigente (nacional o extranjera).</li>
+                            <li>Vivir y/o trabajar en la Región de La Araucanía.</li>
+                            <li>No haber cursado la Escuela Nivel Inicial en 2023 o 2024.</li>
+                        </ul>
+                        <h5>¿Por qué inscribirse?</h5>
+                        <p>“Necesitamos líderes sindicales preparados para enfrentar la informalidad, las brechas de género y la precariedad laboral; esta escuela entrega las herramientas para lograrlo”, destaca el equipo coordinador de Estudios Rurales.</p>
+                        <h5>¿Cómo inscribirse?</h5>
+                        <p>Completa el formulario y asegura tu cupo (plazas limitadas): <a href="#" onclick="closeArticuloModal(); openInscripcionModal(event); return false;" class="btn-link-modal">IR AL FORMULARIO</a></p>
+                        <p>Para consultas, comunicarse con Jorge Paredes, al <strong>+56 9 4094 2318</strong></p>
+                        <hr>
+                        <p style="font-size:0.8em; text-align:center;"><em>Subsecretaría del Trabajo · Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025.</em></p>`
+            },
+            'noticia_formacion_sindical_rm': {
+                titulo: "Escuela de Formación Sindical: Estudios Rurales abre convocatoria para la Región Metropolitana",
+                cuerpo: `<h4>Escuela de Formación Sindical – Nivel Inicial (Región Metropolitana)</h4>
+                        <p><strong>SANTIAGO, 3 de junio de 2025.</strong> — Estudios Rurales anuncia la apertura de inscripciones para la Escuela de Formación Sindical – Nivel Inicial 2025 que se realizará en la Región Metropolitana, iniciativa financiada por el Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025 de la Subsecretaría del Trabajo.</p>
+                        <p>Dirigida a trabajadoras y trabajadores, el programa está concebido para formar nuevos líderes sindicales capaces de negociar, dialogar y resguardar derechos en contextos laborales cada vez más exigentes.</p>
+                        <h5>Duración y formato</h5>
+                        <p>La escuela contempla <strong>68 horas pedagógicas</strong> distribuidas en <strong>cinco semanas y media</strong>, que se realizarán en modalidad mixta:</p>
+                        <table class="tabla-info-modal">
+                            <thead>
+                                <tr>
+                                    <th>Calendario</th>
+                                    <th>Modalidad</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Inicio: 9 de junio</td>
+                                    <td>Ceremonia de inauguración</td>
+                                    <td>Bienvenida, entrega de materiales y lineamientos de la Escuela Sindical Nivel Inicial</td>
+                                </tr>
+                                <tr>
+                                    <td>Miércoles y viernes</td>
+                                    <td>Clases online</td>
+                                    <td>Clases en horario vespertino</td>
+                                </tr>
+                                <tr>
+                                    <td>Sábados</td>
+                                    <td>Presencial</td>
+                                    <td>Aula de la Caja de Compensación Los Andes, Santiago Centro</td>
+                                </tr>
+                                <tr>
+                                    <td>Cierre: 4 de agosto</td>
+                                    <td>Ceremonia de certificación presencial</td>
+                                    <td>Reflexiones finales y entrega de certificados</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h5>Contenidos principales</h5>
+                        <ul>
+                            <li>Módulo 1: Desafíos del liderazgo sindical en el siglo XXI</li>
+                            <li>Módulo 2: Desarrollo de habilidades de comunicación, diálogo social y negociación</li>
+                            <li>Módulo 3: Vinculación con la sociedad</li>
+                        </ul>
+                        <h5>Beneficios sin costo</h5>
+                        <p>El proyecto es <strong>100 % gratuito</strong>: incluye materiales de estudio, <strong>subsidios de transporte y alimentación</strong>. Acceso a repositorio con grabaciones y material académico de cada clase. Además reconocimiento especial a quienes cumplan con el requisito de asistencia y evaluación final de la Escuela Nivel Inicial.</p>
+                        <h5>Requisitos</h5>
+                        <ul>
+                            <li>Ser mayor de 18 años</li>
+                            <li>Contar con cédula chilena vigente (chileno/a o extranjero/a)</li>
+                            <li>Vivir y/o trabajar en la Región Metropolitana</li>
+                            <li>No haber cursado alguna Escuela Nivel Inicial en 2023-2024</li>
+                        </ul>
+                        <h5>Cómo postular</h5>
+                        <p>Las inscripciones ya están disponibles en <a href="#" onclick="closeArticuloModal(); openInscripcionModal(event); return false;" class="btn-link-modal">estudiosrurales.com</a> hasta agotar cupos. El formulario en línea solicita datos personales, así como actividad laboral y sindical.</p>
+                        <p>“La dispersión de microempresas y la baja sindicalización en la RM requieren dirigentes mejor preparados; nuestra escuela entrega las competencias para asumir ese desafío”, señala el equipo coordinador de Estudios Rurales.</p>
+                        <hr>
+                        <p style="font-size:0.8em; text-align:center;"><em>Financiado por Subsecretaría del Trabajo, Fondo de Formación Sindical y Relaciones Laborales Colaborativas 2025.</em></p>`
+            },
             'noticia_concentracion_tierra': { 
                 titulo: "Impacto de Concentración de Tierras y Acceso al Riego en Pobreza Rural Chilena",
                 cuerpo: "<p>Un nuevo estudio que analiza 253 municipios chilenos revela una preocupante conexión entre la alta concentración de la propiedad de la tierra, el acceso limitado al riego y el aumento de la pobreza rural. Los hallazgos sugieren que el actual régimen de propiedad en Chile facilita la acumulación irrestricta de tierras, lo que, combinado con la escasez de agua –agravada por el cambio climático–, genera vulnerabilidades territoriales significativas.</p><p>La investigación destaca que en municipios con bajo acceso a irrigación, la concentración de tierras tiene un impacto directo en el aumento de la probabilidad de pobreza. Esto se debe a que los pequeños productores y comunidades con menos recursos enfrentan mayores dificultades para acceder a la tierra y al agua, limitando su capacidad de adaptación y desarrollo. El estudio urge a una revisión de las políticas de tenencia y distribución de recursos productivos para fomentar un desarrollo más equitativo y resiliente en las zonas rurales de Chile.</p>"
@@ -1615,18 +1783,6 @@
             'noticia_pndr_propiedad': { 
                 titulo: "Política de Desarrollo Rural Chilena: ¿Ignora la Concentración de la Tierra?",
                 cuerpo: "<p>Un análisis crítico de la nueva Política Nacional de Desarrollo Rural (PNDR) de Chile plantea interrogantes sobre su efectividad al no abordar directamente el persistente fenómeno de la concentración de la tierra. Según el estudio, la PNDR se enfoca en la competitividad territorial pero pasa por alto cómo la estructura de propiedad rural, caracterizada por su naturaleza individual y absoluta, influye en las dinámicas espaciales y socioeconómicas.</p><p>La investigación argumenta que esta omisión representa una contradicción inherente, ya que la alta concentración de tierras (con el 1% de las explotaciones más grandes controlando hasta el 70% de la tierra en algunas regiones agroforestales clave) limita la capacidad de la política para alcanzar sus objetivos de desarrollo equitativo. Se sugiere que, para una planificación rural efectiva, es crucial considerar cómo el marco legal de la propiedad media el acceso a recursos y configura el poder en los territorios rurales, especialmente en un contexto de creciente presión por el cambio climático y la seguridad alimentaria.</p>"
-            },
-            'articulo1_perspectivas': { 
-                titulo: "Desafíos de la Agricultura Familiar en el Siglo XXI",
-                cuerpo: "<p>Este es el contenido completo del artículo sobre los desafíos de la agricultura familiar...</p><p>Se detallan aspectos como la resiliencia, adaptación al cambio climático, y dinámicas de mercado que afectan a los pequeños productores.</p>"
-            },
-            'articulo2_perspectivas': { 
-                titulo: "El Rol de la Mujer en el Desarrollo Rural Sostenible",
-                cuerpo: "<p>Análisis profundo sobre la contribución esencial de las mujeres en el ámbito rural y las brechas de género que aún necesitan ser abordadas para un desarrollo equitativo y sostenible.</p>"
-            },
-            'articulo3_perspectivas': { 
-                titulo: "Innovación Tecnológica para la Pequeña Agricultura",
-                cuerpo: "<p>Exploración de cómo las nuevas tecnologías, desde apps móviles hasta drones y biotecnología, pueden ser herramientas clave para potenciar la productividad, eficiencia y sostenibilidad de los pequeños agricultores.</p>"
             }
         };
 
@@ -1637,16 +1793,20 @@
                 modalTitulo.textContent = contenido.titulo;
                 modalCuerpo.innerHTML = contenido.cuerpo;
                 articuloModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; 
             } else {
                 console.error("Contenido no encontrado para el ID:", articuloId);
+                modalTitulo.textContent = "Contenido no disponible";
+                modalCuerpo.innerHTML = "<p>Lamentamos las molestias, el contenido solicitado no está disponible en este momento.</p>";
+                articuloModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
             }
         }
 
         function closeArticuloModal() {
             if (!articuloModal) return;
             articuloModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; 
         };
         
         // --- Modal para Inscripción ---
@@ -1661,12 +1821,12 @@
             if (event) event.preventDefault(); 
             if (!inscripcionModal) return;
             inscripcionModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; 
         }
         function closeInscripcionModal() {
             if (!inscripcionModal) return;
             inscripcionModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; 
             if(inscripcionFormEr) inscripcionFormEr.reset(); 
             if(fotoCarnetPreviewEr) { 
                 fotoCarnetPreviewEr.style.display = 'none'; 
@@ -1713,12 +1873,12 @@
 
                 fetch(scriptURL, { 
                     method: 'POST', 
-                    body: formData
+                    body: formData 
                 })
                 .then(response => response.json()) 
                 .then(data => {
                     console.log('Respuesta del script:', data);
-                    if(data.result === 'success'){
+                    if(data.result === 'success'){ 
                         alert('Inscripción enviada con éxito. ¡Gracias!');
                     } else {
                         alert('Hubo un error al enviar la inscripción: ' + (data.error || 'Error desconocido del servidor.'));
@@ -1792,3 +1952,4 @@
     </script>
 </body>
 </html>
+
