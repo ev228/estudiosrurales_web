@@ -1384,7 +1384,7 @@
                             <h4>Escuela Sindical Avanzada en La Araucanía: formación integral para dirigentes con enfoque territorial</h4>
                             <p class="noticia-meta-er"><span class="fecha">8 de agosto de 2025</span> | Por Estudios Rurales</p>
                             <p class="noticia-extracto-er">Estudios Rurales inicia la Escuela de Formación Sindical Avanzada en la Región de La Araucanía, con sede en Temuco. Esta iniciativa está dirigida a personas trabajadoras que ya ejercen un rol dirigencial o han sido patrocinadas por sus organizaciones sindicales, con el objetivo de fortalecer sus capacidades para el liderazgo, la negociación colectiva y la defensa de los derechos laborales.</p>
-                            <a href="#" class="btn-detalle">Leer Más &rarr;</a>
+                            <a href="#" class="btn-detalle" onclick="openArticuloModal('noticia_sindical_avanzada_araucania')">Leer Más &rarr;</a>
                         </div>
                     </article>
 
@@ -1657,13 +1657,12 @@
             });
         }
 
-        // --- Modal para Artículos de Perspectivas y Análisis ---
+        // --- Modal para Artículos ---
         const articuloModal = document.getElementById('articuloModal');
         const modalTitulo = document.getElementById('modalArticuloTitulo');
         const modalCuerpo = document.getElementById('modalArticuloCuerpo');
 
-        // Contenido solo para la sección "Perspectivas y Análisis" que usa modal
-        const contenidoArticulosPerspectivas = {
+        const contenidoArticulos = {
             'noticia_concentracion_tierra': { 
                 titulo: "Impacto de Concentración de Tierras y Acceso al Riego en Pobreza Rural Chilena",
                 cuerpo: "<p>Un nuevo estudio que analiza 253 municipios chilenos revela una preocupante conexión entre la alta concentración de la propiedad de la tierra, el acceso limitado al riego y el aumento de la pobreza rural. Los hallazgos sugieren que el actual régimen de propiedad en Chile facilita la acumulación irrestricta de tierras, lo que, combinado con la escasez de agua –agravada por el cambio climático–, genera vulnerabilidades territoriales significativas.</p><p>La investigación destaca que en municipios con bajo acceso a irrigación, la concentración de tierras tiene un impacto directo en el aumento de la probabilidad de pobreza. Esto se debe a que los pequeños productores y comunidades con menos recursos enfrentan mayores dificultades para acceder a la tierra y al agua, limitando su capacidad de adaptación y desarrollo. El estudio urge a una revisión de las políticas de tenencia y distribución de recursos productivos para fomentar un desarrollo más equitativo y resiliente en las zonas rurales de Chile.</p>"
@@ -1671,19 +1670,45 @@
             'noticia_pndr_propiedad': { 
                 titulo: "Política de Desarrollo Rural Chilena: ¿Ignora la Concentración de la Tierra?",
                 cuerpo: "<p>Un análisis crítico de la nueva Política Nacional de Desarrollo Rural (PNDR) de Chile plantea interrogantes sobre su efectividad al no abordar directamente el persistente fenómeno de la concentración de la tierra. Según el estudio, la PNDR se enfoca en la competitividad territorial pero pasa por alto cómo la estructura de propiedad rural, caracterizada por su naturaleza individual y absoluta, influye en las dinámicas espaciales y socioeconómicas.</p><p>La investigación argumenta que esta omisión representa una contradicción inherente, ya que la alta concentración de tierras (con el 1% de las explotaciones más grandes controlando hasta el 70% de la tierra en algunas regiones agroforestales clave) limita la capacidad de la política para alcanzar sus objetivos de desarrollo equitativo. Se sugiere que, para una planificación rural efectiva, es crucial considerar cómo el marco legal de la propiedad media el acceso a recursos y configura el poder en los territorios rurales, especialmente en un contexto de creciente presión por el cambio climático y la seguridad alimentaria.</p>"
+            },
+            'noticia_sindical_avanzada_araucania': {
+                titulo: "Escuela Sindical Avanzada en La Araucanía: formación integral para dirigentes",
+                cuerpo: `<p>Estudios Rurales inicia la Escuela de Formación Sindical Avanzada en la Región de La Araucanía, con sede en Temuco. Esta iniciativa está dirigida a personas trabajadoras que ya ejercen un rol dirigencial o han sido patrocinadas por sus organizaciones sindicales, con el objetivo de fortalecer sus capacidades para el liderazgo, la negociación colectiva y la defensa de los derechos laborales.</p>
+                         <p>La escuela contempla 110 horas de formación distribuidas en 12 semanas, con una metodología híbrida que combina sesiones presenciales y virtuales, asegurando flexibilidad y accesibilidad para trabajadores en ejercicio.</p>
+                         <h5>El programa formativo ofrece contenidos actualizados en:</h5>
+                         <ul>
+                             <li>Historia sindical y marco normativo laboral.</li>
+                             <li>Comunicación y diálogo social.</li>
+                             <li>Estrategias de liderazgo en escenarios de cambio.</li>
+                             <li>Relación entre el mundo del trabajo y los derechos humanos.</li>
+                         </ul>
+                         <h5>Las personas participantes contarán con beneficios concretos que apoyan su proceso de formación:</h5>
+                         <ul>
+                             <li>Certificado oficial de participación.</li>
+                             <li>Bonos de movilización y asistencia.</li>
+                             <li>Materiales impresos y digitales.</li>
+                             <li>Acceso a plataforma de formación de gestión de aprendizaje y mentorías.</li>
+                         </ul>
+                         <h5>¿Cuáles son los requisitos?</h5>
+                         <p>Para postular necesitas tener 18 años o más, cédula chilena vigente (nacional o extranjera), vivir y/o trabajar en la Región de la Araucanía y no haber cursado la Escuela Nivel Avanzada en 2023 o 2024.</p>
+                         <p>Esta escuela busca aportar al fortalecimiento del tejido sindical regional, promoviendo el trabajo decente y la participación en los procesos de transformación laboral.</p>
+                         <hr>
+                         <p><strong>Más información en:</strong> <a href="https://www.estudiosrurales.cl" target="_blank" class="btn-link-modal">www.estudiosrurales.com</a></p>
+                         <p><strong>INICIO DE CLASES:</strong> 25 DE AGOSTO 2025.</p>
+                         <p style="font-size:0.8rem; color:#777; text-align:center; margin-top:20px;">Subsecretaría del Trabajo, Fondo de Formación Sindical y Relaciones Laborales Colaborativas, 2025.</p>`
             }
         };
 
-        function openArticuloModal(articuloId) { // Esta función ahora solo para Perspectivas
+        function openArticuloModal(articuloId) {
             if (!articuloModal || !modalTitulo || !modalCuerpo) return; 
-            const contenido = contenidoArticulosPerspectivas[articuloId]; // Usar el objeto correcto
+            const contenido = contenidoArticulos[articuloId];
             if (contenido) {
                 modalTitulo.textContent = contenido.titulo;
                 modalCuerpo.innerHTML = contenido.cuerpo;
                 articuloModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden'; 
             } else {
-                console.error("Contenido no encontrado para el ID (Perspectivas):", articuloId);
+                console.error("Contenido no encontrado para el ID:", articuloId);
                 modalTitulo.textContent = "Contenido no disponible";
                 modalCuerpo.innerHTML = "<p>Lamentamos las molestias, el contenido solicitado no está disponible en este momento.</p>";
                 articuloModal.style.display = 'flex';
@@ -1691,13 +1716,13 @@
             }
         }
 
-        function closeArticuloModal() { // Esta función ahora solo para Perspectivas
+        function closeArticuloModal() {
             if (!articuloModal) return;
             articuloModal.style.display = 'none';
             document.body.style.overflow = 'auto'; 
         };
         
-        // --- Modal para Inscripción (se mantiene) ---
+        // --- Modal para Inscripción ---
         const inscripcionModal = document.getElementById('inscripcionModal');
         const inscripcionFormEr = document.getElementById('inscripcionFormEr');
         const fotoCarnetInputEr = document.getElementById('inscFotoCarnetEr'); 
@@ -1787,10 +1812,10 @@
         
         // Cerrar modales si se hace clic fuera del contenido
         window.addEventListener('click', function(event) {
-            if (event.target == articuloModal) { // Modal de Perspectivas
+            if (event.target == articuloModal) {
                 closeArticuloModal();
             }
-            if (event.target == inscripcionModal) { // Modal de Inscripción
+            if (event.target == inscripcionModal) {
                 closeInscripcionModal();
             }
         });
